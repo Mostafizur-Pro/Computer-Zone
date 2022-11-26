@@ -6,6 +6,7 @@ const Order = () => {
   useTitle("Order");
   const { user } = useContext(AuthContext);
   console.log(user);
+
   const [orders, setOrders] = useState([]);
   useEffect(() => {
     fetch("http://localhost:5000/orders")

@@ -78,7 +78,7 @@ const MyProducts = () => {
               <tr>
                 <th>Image</th>
                 <th>Price</th>
-                <th>Group</th>
+                <th>Title</th>
                 <th>Condition</th>
                 <th>Available</th>
                 <th>Advertisement</th>
@@ -97,9 +97,9 @@ const MyProducts = () => {
                           alt=""
                         ></img>
                       </th>
+                      <td>{product.title}</td>
+                      <td>{product.condition}</td>
                       <td>{product.resalePrice}</td>
-                      <td>{product.category}</td>
-                      <td>{product.category}</td>
 
                       <td>unsold</td>
                       <td>

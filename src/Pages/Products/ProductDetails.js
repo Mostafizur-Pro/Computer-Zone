@@ -28,8 +28,8 @@ const ProductDetails = () => {
 
   const productDetails = { ...products, email: user?.email };
   const handleOrder = (productDetails) => {
-    // console.log("id", _id);
-    console.log(productDetails);
+    console.log("id", productDetails);
+    // console.log(productDetails);
 
     fetch("http://localhost:5000/orders", {
       method: "POST",

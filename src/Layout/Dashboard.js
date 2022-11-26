@@ -3,9 +3,11 @@ import { Link, Outlet } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthProvider";
 import useAdmin from "../hooks/useAdmin";
 import useBuyer from "../hooks/useBuyer";
+import MyProducts from "../Pages/Dashboard/MyProducts/MyProducts";
 import Order from "../Pages/Dashboard/Order/Order";
+
 import Navbar from "../Pages/Shared/Navbar/Navbar";
-import BuyerRoute from "../Routes/BuyerRoute/BuyerRoute";
+
 import useSeller from "./../hooks/useSeller";
 
 const Dashboard = () => {

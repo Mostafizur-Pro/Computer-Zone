@@ -21,7 +21,6 @@ const CategoryDetails = () => {
   // }, []);
 
   // console.log("categoryDetails", categories[0].category_name);
-  console.log("categories", categories);
   return (
     <div>
       <div>

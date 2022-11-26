@@ -23,7 +23,7 @@ const Categories = () => {
         )}
       </div>
       <div className="text-center mt-5">
-        <Link to={`/categorydetails/${"laptop"}`}>
+        <Link to={`/categorydetails/${"Laptop"}`}>
           <button className="btn text-2xl btn-primary">See All Post</button>
         </Link>
       </div>

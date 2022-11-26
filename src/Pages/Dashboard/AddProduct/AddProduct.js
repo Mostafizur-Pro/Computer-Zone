@@ -9,7 +9,7 @@ const AddProduct = () => {
   useTitle("Add_Products");
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
-  const [imageData, setImageData] = useState("");
+  const [imgbb, setImgbb] = useState("");
   // console.log("imageDataLink", imageData);
   // const imageHostKey = process.env.REACT_APP_key;
 
@@ -28,35 +28,41 @@ const AddProduct = () => {
     const formData = new FormData();
     formData.append("image", image);
     // ----------------------------------------------------
-    const addProduct = {
-      ...data,
-      email: user.email,
-      currentTime: new Date(),
-      image_url: imageData,
-    };
-    console.log(addProduct);
+
     // imgbb API theke url ta copy kora hoise
     const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`;
-    console.log("imageHostKey", url);
+    // console.log("imageHostKey", url);
     fetch(url, {
       method: "POST",
       body: formData,
     })
       .then((res) => res.json())
       .then((imgData) => {
-        if (imgData.success) {
-          console.log(imgData.data.url);
+        console.log("dispaly", imgData.data.display_url);
 
-          const imageData = imgData.data.url;
-          setImageData(imageData);
-          toast("Product add");
+        if (imgData.success) {
+          const imageData = imgData.data.display_url;
+          setImgbb(imageData);
+          console.log("img link", imageData);
+          const addProduct = {
+            ...data,
+            email: user.email,
+            currentTime: new Date(),
+            image_url: imgData.data.display_url,
+          };
+
+          saveUser(addProduct);
+
           // navigate("/dashboard/myproducts");
         }
       });
     // console.log("imgbb image link", imageData);
 
     // console.log("add product in server", addProduct);
+  };
 
+  const saveUser = (addProduct) => {
+    console.log("saveuser", addProduct);
     fetch("http://localhost:5000/addProduct", {
       method: "POST",
       headers: {
@@ -67,46 +73,33 @@ const AddProduct = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-
-        if (data.success) {
-          // setTreatment(null);
-
-          const userInfo = {
-            name: data.name,
-            email: data.email,
-            number: data.number,
-            image_url: data.data.url,
-            userType: data.usertype,
-            currentTime: new Date(),
-          };
-          // setImageData(userInfo);
-
-          saveUser(userInfo);
-
-          // refetch();
+        if (data.acknowledged) {
+          toast.success("Product add");
+          navigate("/dashboard/myproducts");
         } else {
           toast.error(data.message);
         }
       });
   };
 
-  const saveUser = (userInfo) => {
-    // const user = { userInfo };
+  // const saveUser = (userInfo) => {
+  //   // const user = { userInfo };
 
-    fetch("http://localhost:5000/addProduct", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(userInfo),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("saveUser", data);
+  //   fetch("http://localhost:5000/addProduct", {
+  //     method: "POST",
+  //     headers: {
+  //       "content-type": "application/json",
+  //     },
+  //     body: JSON.stringify(userInfo),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       console.log("saveUser", data);
+  //       navigate("/dashboard/myproducts");
 
-        // setCreatedUserEmail(email);
-      });
-  };
+  //       // setCreatedUserEmail(email);
+  //     });
+  // };
 
   return (
     <div className="max-w-lg ">
