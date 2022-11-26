@@ -1,0 +1,135 @@
+[
+    {
+      "_id": "01",
+      "title": "EliteBook i5/4GB",
+      "category_name": "laptop",
+      "image_url": "https://i.pinimg.com/736x/a9/c3/83/a9c383cfe6fc09ab5ca8a73b6b574551.jpg",
+      "originalPrice": "15000",
+      "resalePrice": "10000",
+      "condition": "used",
+      "usedYear": "1 year",
+      "category_id": "01",
+      "product_details": "01"
+           },
+    {
+      "_id": "02",
+      "title": "Samsung i3/4GB",
+      "category_name": "laptop",
+      "image_url": "https://media.karousell.com/media/photos/products/2020/12/11/samsung_i3_laptop__120gb_ssd___1607657439_28ce6f4c_progressive",
+      "originalPrice": "20000",
+      "resalePrice": "12000",
+      "condition": "used",
+      "usedYear": "8 months",
+      "category_id": "01",
+      "product_details": "01"
+           },
+    {
+      "_id": "03",
+      "title": "Lenovo ThinkPad i7/5th gen",
+      "category_name": "laptop",
+      "image_url": "https://chaipaibazar.com/wp-content/uploads/2017/11/13-600x375.jpg",
+      "originalPrice": "15000",
+      "resalePrice": "10000",
+      "condition": "used",
+      "usedYear": "8 months",
+      "category_id": "01",
+      "product_details": "01"
+           },
+    {
+      "_id": "04",
+      "title": "SAMSUNG 19inch",
+      "category_name": "Monitor",
+      "image_url": "https://i.ytimg.com/vi/b7oksbT5ELE/maxresdefault.jpg",
+      "originalPrice": "15000",
+      "resalePrice": "10000",
+      "condition": "used",
+      "usedYear": "8 months",
+      "category_id": "02",
+      "product_details": "01"
+           },
+    {
+      "_id": "05",
+      "title": "HP 19inch",
+      "category_name": "Monitor",
+      "image_url": "https://media.karousell.com/media/photos/products/2018/07/27/hp_19_inch_monitor_1532702455_c4d804d6_progressive.jpg",
+      "originalPrice": "15000",
+      "resalePrice": "10000",
+      "condition": "used",
+      "usedYear": "8 months",
+      "category_id": "02",
+      "product_details": "01"
+           },
+    {
+      "_id": "06",
+      "title": "HP Laser Jet 1320 Printer",
+      "category_name": "Printer",
+      "image_url": "https://i.ytimg.com/vi/UmIC-pA7tSQ/maxresdefault.jpg",
+      "originalPrice": "15000",
+      "resalePrice": "10000",
+      "condition": "used",
+      "usedYear": "8 months",
+      "category_id": "03",
+      "product_details": "01"
+           },
+    {
+      "_id": "07",
+      "title": "Epson L130 Printer",
+      "category_name": "Printer",
+      "image_url": "https://www.bdstall.com/asset/product-image/giant_34451.jpeg",
+      "originalPrice": "15000",
+      "resalePrice": "10000",
+      "condition": "used",
+      "usedYear": "8 months",
+      "category_id": "03",
+      "product_details": "01"
+           },
+    {
+      "_id": "08",
+      "title": "Gaming PC",
+      "category_name": "Desktop",
+      "image_url": "https://pisces.bbystatic.com/image2/BestBuy_US/Gallery/learn-BuyingGuide_DER-76255.jpg;maxHeight=646;maxWidth=948",
+      "originalPrice": "15000",
+      "resalePrice": "10000",
+      "condition": "used",
+      "usedYear": "8 months",
+      "category_id": "04",
+      "product_details": "01"
+           },
+    {
+      "_id": "09",
+      "title": "Desktop Computer",
+      "category_name": "Desktop",
+      "image_url": "https://www.bdstall.com/asset/product-image/giant_128681.jpg",
+      "originalPrice": "15000",
+      "resalePrice": "10000",
+      "condition": "used",
+      "usedYear": "8 months",
+      "category_id": "04",
+      "product_details": "01"
+           },
+    {
+      "_id": "10",
+      "title": "Computer Accessories",
+      "category_name": "Accessories",
+      "image_url": "https://eraj.com/storage/category/56/AgCCFokJ83cd15u4tMAGM84kFEXulThmFtf0nG46.jpg",
+      "originalPrice": "15000",
+      "resalePrice": "10000",
+      "condition": "used",
+      "usedYear": "8 months",
+      "category_id": "05",
+      "product_details": "01"
+           },
+    {
+      "_id": "11",
+      "title": "RAM",
+      "category_name": "Products",
+      "image_url": "https://www.bdstall.com/asset/product-image/giant_128383.jpg",
+      "originalPrice": "15000",
+      "resalePrice": "10000",
+      "condition": "used",
+      "usedYear": "8 months",
+      "category_id": "06",
+      "product_details": "01"
+    }
+
+        ]

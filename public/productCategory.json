@@ -1,0 +1,39 @@
+[
+    {
+      "category": "01",
+      "name": "laptop",
+      "image":"https://images.unsplash.com/photo-1618424181497-157f25b6ddd5?ixlib=rb-4.0.3&ixcategory=MnwxMjA3fDB8MHxzZWFyY2h8M3x8bGFwdG9wJTIwY29tcHV0ZXJ8ZW58MHx8MHx8&w=1000&q=80",
+      "detail":"Buy laptop at Lowest price guaranteed in Bangladesh. All popular Laptop brands including Macbook, HP, Asus, Dell, Lenovo, MSI, and Xiaomi are available."
+    },
+    {
+      "category": "02",
+      "name": "Monitor",
+      "image":"https://expertreviews.b-cdn.net/sites/expertreviews/files/2022/06/best_monitor_-_lead.jpg",
+      "detail":"Buy monitor at the best price in Bangladesh. Latest Asus, Samsung, HP, LG, Acer, and Philips Computer monitors are available at Computer Zone Online shop."
+    },
+    {
+      "category": "03",
+      "name": "Printer",
+      "image":"https://www.zdnet.com/a/img/resize/013ec50b2fc5901a6ebcd5a2c5d913368faeb7a4/2022/09/19/374a72ca-7d37-4731-9c05-490880e11d34/canon-pixma-mg3620-printer.jpg?auto=webp&fit=crop&height=360&wcategoryth=640",
+      "detail":"Discover a wcategorye range of Printer including HP, Canon, Epson & Brother, printer at best price in Bangladesh. Shop online or visit your nearest Computer Zone Online shop."
+    },
+    {
+      "category": "04",
+      "name": "Desktop",
+      "image":"https://www.bdtradeinfo.com/public/product_image/img_1124_1128.jpg",
+      "detail":"Get the latest desktop price in bd at Star Tech. Buy your desired Budget, Gaming, Brand & Mini desktop computer from our showroom or website at the best."
+    },
+    {
+      "category": "05",
+      "name": "Accessories",
+      "image":"https://www.pngkit.com/png/detail/15-158103_computer-accessories-computer-and-accessories-png.png",
+      "detail":"Buy the latest computer accessories at the best price from Computer Zone (CZ) Limited. Smart offers all types of computer accessories."
+    },
+    {
+      "category": "06",
+      "name": "Products",
+      "image":"https://www.biz4group.com/images/why-choose-php-programming-language-for-web-development.jpg",
+      "detail":"PHP (recursive acronym for PHP: Hypertext Preprocessor) is a wcategoryely-used open source general-purpose scripting language that is especially suited for web development and can be embedded into HTML."
+    }
+  
+  ]
