@@ -27,6 +27,7 @@ const Advertisement = () => {
     title,
     usedYear,
     _id,
+    email,
   } = product;
   console.log(product);
   return (
@@ -37,13 +38,16 @@ const Advertisement = () => {
         </p>
       </div>
       {/* <h3 className="text-3xl font-bold text-center">Advertisement</h3> */}
-      <div className="card lg:card-side  shadow-xl">
+      <div className="card lg:card-side w-full shadow-xl">
         <figure className="ml-10">
           <img src={image_url} alt="Album" />
         </figure>
         <div className="card-body">
           <h2 className="card-title text-3xl text-green-500">{title}</h2>
-          <p>{Location} </p>
+          <p>
+            Post Time: {currentTime} <br />
+            {Location}{" "}
+          </p>
           <h3>
             <span className="line-through">Original Price {originalPrice}</span>
             <br />
@@ -51,17 +55,14 @@ const Advertisement = () => {
               Sell Price {resalePrice}{" "}
             </span>
           </h3>
-          {/* <h3> <span className="line-through">
-                  Original Price {originalPrice}
-                </span>
-                <span className="text-red-400 text-xl font-semibold">
-                               Sell Price {resalePrice} </span></p> */}
+
           <p>Condition: {condition}</p>
           <p>
-            Used: {usedYear} {usedYear === 1 ? <>years</> : <>year</>}
+            Used: {usedYear} {usedYear >= 1 ? <>years</> : <>year</>}
+            <br /> {email} <br />
+            <span className=" text-2xl font-bold">Mob: {number} </span>
           </p>
           <div className="card-actions justify-end">
-            <p className="">Post Time: {currentTime}</p>
             <Link to={`/productdetails/${_id}`}>
               <button className="btn btn-primary">Booking Now</button>
             </Link>

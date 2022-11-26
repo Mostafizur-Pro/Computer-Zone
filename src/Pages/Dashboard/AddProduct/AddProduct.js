@@ -11,7 +11,8 @@ const AddProduct = () => {
   const navigate = useNavigate();
   const [imageData, setImageData] = useState("");
   // console.log("imageDataLink", imageData);
-  // const imageHostKey = process.env.REACT_APP_app_imgbb_key;
+  // const imageHostKey = process.env.REACT_APP_key;
+
   const imageHostKey = "8f9db19b3f39c00f02b131902d75b8e3";
   const {
     register,
@@ -36,6 +37,7 @@ const AddProduct = () => {
     console.log(addProduct);
     // imgbb API theke url ta copy kora hoise
     const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`;
+    console.log("imageHostKey", url);
     fetch(url, {
       method: "POST",
       body: formData,
@@ -47,14 +49,15 @@ const AddProduct = () => {
 
           const imageData = imgData.data.url;
           setImageData(imageData);
-          navigate("/dashboard/myproducts");
+          toast("Product add");
+          // navigate("/dashboard/myproducts");
         }
       });
     // console.log("imgbb image link", imageData);
 
     // console.log("add product in server", addProduct);
 
-    fetch("http://localhost:5000/productadd", {
+    fetch("http://localhost:5000/addProduct", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -90,7 +93,7 @@ const AddProduct = () => {
   const saveUser = (userInfo) => {
     // const user = { userInfo };
 
-    fetch("http://localhost:5000/addproduct", {
+    fetch("http://localhost:5000/addProduct", {
       method: "POST",
       headers: {
         "content-type": "application/json",

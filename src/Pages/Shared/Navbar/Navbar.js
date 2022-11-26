@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider";
 
@@ -6,6 +6,18 @@ import Logo from "../Logo/Logo";
 
 const Navbar = () => {
   const { user, logOut, setTheme, theme } = useContext(AuthContext);
+
+  const [users, setUsers] = useState([]);
+  console.log(user, "navber");
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/users/${user?.email}`)
+      .then((res) => res.json())
+      .then((data) => {
+        // console.log(data);
+        setUsers(data);
+      });
+  }, []);
 
   const handleLogOut = () => {
     logOut()
@@ -27,11 +39,43 @@ const Navbar = () => {
 
   const menuItem = (
     <>
-      <li>
+      <li tabIndex={0}>
         <Link to="/">Home</Link>
       </li>
       <li>
-        <Link to="/categorydetails/laptop">Category List</Link>
+        <a>
+          Category List
+          <svg
+            className="fill-current"
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+          >
+            <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
+          </svg>
+        </a>
+        <ul className="p-2 bg-neutral z-40  ">
+          <li>
+            <Link to="/categorydetails/laptop">Laptop</Link>
+          </li>
+          <li>
+            <Link to="/categorydetails/Monitor">Monitor</Link>
+          </li>
+          <li>
+            <Link to="/categorydetails/Printer">Printer</Link>
+          </li>
+          <li>
+            <Link to="/categorydetails/Desktop">Desktop</Link>
+          </li>
+          <li>
+            <Link to="/categorydetails/Accessories">Accessories</Link>
+          </li>
+          <li>
+            <Link to="/categorydetails/Products">Products</Link>
+          </li>
+        </ul>
+        {/* <Link to="/categorydetails/laptop">Category List</Link> */}
       </li>
       <li>
         <Link to="/blog">Blog</Link>
@@ -85,7 +129,7 @@ const Navbar = () => {
           </div>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal p-0">{menuItem}</ul>
+          <ul className="menu menu-horizontal  p-0">{menuItem}</ul>
         </div>
         <div className="navbar-end">
           {user?.email ? (
@@ -127,15 +171,68 @@ const Navbar = () => {
               </div>
 
               <div className="dropdown dropdown-end">
-                <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                {users?.userType === "admin" ? (
+                  <>
+                    <label tabIndex={0} className=" online avatar">
+                      <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                        {users?.image ? (
+                          <>
+                            <img src={users?.image} alt="" />
+                          </>
+                        ) : (
+                          <img alt="" src="https://placeimg.com/80/80/people" />
+                        )}
+                      </div>
+                    </label>
+                  </>
+                ) : (
+                  <>
+                    {" "}
+                    {users?.role === "verify" ? (
+                      <>
+                        <label tabIndex={0} className=" online avatar">
+                          <div className="w-10 rounded-full">
+                            {users?.image ? (
+                              <>
+                                <img src={users?.image} alt="" />
+                              </>
+                            ) : (
+                              <img
+                                alt=""
+                                src="https://placeimg.com/80/80/people"
+                              />
+                            )}
+                          </div>
+                        </label>
+                      </>
+                    ) : (
+                      <label tabIndex={0} className="  avatar">
+                        <div className="w-10 rounded-full">
+                          {users?.image ? (
+                            <>
+                              <img src={users?.image} alt="" />
+                            </>
+                          ) : (
+                            <img
+                              alt=""
+                              src="https://placeimg.com/80/80/people"
+                            />
+                          )}
+                        </div>
+                      </label>
+                    )}
+                  </>
+                )}
+
+                {/* <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                   <div className="w-10 rounded-full">
-                    {user?.image ? (
-                      <>{user?.image}</>
+                    {users?.image ? (
+                      <>{users?.image}</>
                     ) : (
                       <img alt="" src="https://placeimg.com/80/80/people" />
                     )}
                   </div>
-                </label>
+                </label> */}
                 <ul
                   tabIndex={0}
                   className="menu menu-compact  dropdown-content mt-3 p-2 shadow bg-gray-400 rounded-box w-52"

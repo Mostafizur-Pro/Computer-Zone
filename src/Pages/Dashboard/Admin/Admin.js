@@ -1,20 +1,44 @@
 import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+
 import useTitle from "../../../hooks/useTitle";
 
 const Admin = () => {
   useTitle("AdminPanel");
-  const [sellers, setSellers] = useState([]);
+  const [users, setUsers] = useState([]);
+
   useEffect(() => {
     fetch("http://localhost:5000/users")
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);
-        setSellers(data);
+        setUsers(data);
       });
   }, []);
 
+  const handleMakeAdmin = (id) => {
+    console.log("approved", id);
+
+    fetch(`http://localhost:5000/users/admin/${id}`, {
+      method: "PUT",
+      // headers: {
+      //   authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      // },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // if (data.modifiedCount > 0) {
+        //   toast.success("Make admin successful.");
+        //   // refetch();
+        // }
+        toast.success("Make verify successful.");
+      });
+  };
+  console.log("Admin", users);
+
   const handleDelete = (seller) => {
     console.log("delete");
+
     fetch(`http://localhost:5000/users/${seller._id}`, {
       method: "DELETE",
     })
@@ -22,13 +46,12 @@ const Admin = () => {
       .then((data) => {
         // console.log("DELETE DATA", data);
         alert("Are you DELETE this product");
-        const remaining = sellers.filter(
-          (products) => products._id !== seller._id
-        );
-        setSellers(remaining);
+        const remaining = users.filter((user) => user._id !== seller._id);
+        setUsers(remaining);
         // refetch();
       });
   };
+
   return (
     <div>
       <div className="">
@@ -45,14 +68,14 @@ const Admin = () => {
               </tr>
             </thead>
             <tbody>
-              {sellers.map((seller, i) => (
+              {users.map((user, i) => (
                 <>
-                  {seller.userType === "admin" && (
-                    <tr key={seller._id}>
+                  {user.userType === "admin" && (
+                    <tr key={user._id}>
                       <th>{i + 1}</th>
-                      <td>{seller.name}</td>
-                      <td>{seller.email}</td>
-                      <td className="text-green-400">{seller.userType}</td>
+                      <td>{user.name}</td>
+                      <td>{user.email}</td>
+                      <td className="text-green-400">{user.userType}</td>
 
                       <td>
                         <button className="btn btn-xs btn-danger">
@@ -81,20 +104,47 @@ const Admin = () => {
             </tr>
           </thead>
           <tbody>
-            {sellers.map((seller, i) => (
+            {users.map((user, i) => (
               <>
-                <tr key={seller._id}>
+                <tr key={user._id}>
                   <th>{i + 1}</th>
-                  <td>{seller.name}</td>
-                  <td>{seller.email}</td>
-                  <td>{seller.userType}</td>
-                  <td>
-                    <button className="btn btn-xs btn-secondary">Click</button>
-                  </td>
+                  <td>{user.name}</td>
+                  <td>{user.email}</td>
+                  <td>{user.userType}</td>
+                  {user?.userType === "Seller" && user?.role !== "verify" && (
+                    <>
+                      <td>
+                        <button
+                          onClick={() => handleMakeAdmin(user?._id)}
+                          className="btn btn-xs btn-secondary"
+                        >
+                          Click
+                        </button>
+                      </td>
+                    </>
+                  )}
+                  {user?.userType !== "Seller" && (
+                    <>
+                      <td>
+                        <button disabled className="btn btn-xs btn-secondary">
+                          Click
+                        </button>
+                      </td>
+                    </>
+                  )}
+                  {user?.role === "verify" && (
+                    <>
+                      <td>
+                        <button className="btn btn-xs btn-success">
+                          Verify
+                        </button>
+                      </td>
+                    </>
+                  )}
 
                   <td>
                     <button
-                      onClick={() => handleDelete(seller)}
+                      onClick={() => handleDelete(user)}
                       className="btn btn-xs btn-"
                     >
                       Delete

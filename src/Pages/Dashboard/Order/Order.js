@@ -15,6 +15,7 @@ const Order = () => {
         setOrders(data);
       });
   }, []);
+  console.log("order", orders);
 
   const handleDelete = (order) => {
     console.log("delete");
@@ -34,6 +35,10 @@ const Order = () => {
         setOrders(remaining);
         // refetch();
       });
+  };
+
+  const handlePayment = (order) => {
+    console.log("Payment Order", order);
   };
   return (
     <div>
@@ -56,6 +61,41 @@ const Order = () => {
             </thead>
             <tbody>
               {orders.map((order, i) => (
+                <>
+                  {order?.email === user?.email && (
+                    <tr key={order._id}>
+                      <th>
+                        <img
+                          className="rounded-xl w-24"
+                          src={order.image_url}
+                          alt=""
+                        ></img>
+                      </th>
+                      <td>{order.title}</td>
+                      <td>{order?.email}</td>
+                      <td>{order.buyer_email}</td>
+
+                      <td>
+                        <button
+                          onClick={() => handlePayment(order)}
+                          className="btn btn-xs btn-secondary"
+                        >
+                          Paid
+                        </button>
+                      </td>
+                      <td>
+                        <button
+                          onClick={() => handleDelete(order)}
+                          className="btn btn-xs btn-danger"
+                        >
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  )}
+                </>
+              ))}
+              {/* {orders.map((order, i) => (
                 <>
                   <tr key={order._id}>
                     <th>
@@ -82,7 +122,7 @@ const Order = () => {
                     </td>
                   </tr>
                 </>
-              ))}
+              ))} */}
             </tbody>
           </table>
         </div>
