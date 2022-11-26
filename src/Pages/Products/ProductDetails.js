@@ -2,9 +2,13 @@ import React, { useContext } from "react";
 import toast from "react-hot-toast";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
+import useBuyer from "../../hooks/useBuyer";
+import useTitle from "../../hooks/useTitle";
 
 const ProductDetails = () => {
+  useTitle("ProductDetails");
   const { user } = useContext(AuthContext);
+  const [isBuyer] = useBuyer(user?.email);
   const navigate = useNavigate();
 
   console.log("user name", user);
@@ -56,14 +60,16 @@ const ProductDetails = () => {
         <div className="card-body">
           <h2 className="card-title">{title}</h2>
           <p>{product_details}</p>
-          <div className="card-actions justify-end">
-            <button
-              onClick={() => handleOrder(productDetails)}
-              className="btn btn-primary"
-            >
-              Order Now
-            </button>
-          </div>
+          {isBuyer && (
+            <div className="card-actions justify-end">
+              <button
+                onClick={() => handleOrder(productDetails)}
+                className="btn btn-primary"
+              >
+                Order Now
+              </button>
+            </div>
+          )}
         </div>
       </div>
       <div className="overflow-x-auto my-10">
@@ -117,11 +123,13 @@ const ProductDetails = () => {
             </tr>
           </tbody>
         </table>
-        <div className="card-actions justify-center">
-          <button onClick={handleOrder} className="btn btn-primary">
-            Order Now
-          </button>
-        </div>
+        {isBuyer && (
+          <div className="card-actions justify-center">
+            <button onClick={handleOrder} className="btn btn-primary">
+              Order Now
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

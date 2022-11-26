@@ -1,13 +1,13 @@
 #### Client Site Github Link :
-https://github.com/programming-hero-web-course-4/b612-used-products-resale-clients-side-Mostafizur-Pro
-
-
+https://github.com/programming-hero-web-course-4/b612-used-products-resale-clients-side-Mostafizur-Pro.git
 
 #### Server Site Github Link :
+https://github.com/programming-hero-web-course-4/b612-used-products-resale-server-side-Mostafizur-Pro.git
 
 
 
 #### Live Link :
+
 
 
 #### Admin Email
