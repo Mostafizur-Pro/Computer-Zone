@@ -20,6 +20,7 @@ import PrivateRoute from "./../PrivateRoute/PrivateRoute";
 import AdminRoute from "../AdminRoute/AdminRoute";
 import BuyerRoute from "../BuyerRoute/BuyerRoute";
 import SellerRoute from "./../SellerRoute/SellerRoute";
+import Payment from "../../Pages/Dashboard/Payment/Payment";
 
 const router = createBrowserRouter([
   {
@@ -95,6 +96,16 @@ const router = createBrowserRouter([
             <Order></Order>
           </BuyerRoute>
         ),
+      },
+      {
+        path: "/dashboard/payment/:id",
+        element: (
+          <BuyerRoute>
+            <Payment></Payment>
+          </BuyerRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/orders/${params.id}`),
       },
       {
         path: "/dashboard/addproducts",

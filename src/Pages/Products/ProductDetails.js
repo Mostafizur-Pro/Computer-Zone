@@ -31,7 +31,7 @@ const ProductDetails = () => {
     console.log("id", productDetails);
     // console.log(productDetails);
 
-    fetch("http://localhost:5000/orders", {
+    fetch("http://localhost:5000/ordersadd", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -41,7 +41,7 @@ const ProductDetails = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log("saveUser", data);
-        navigate("/dashboard");
+        navigate("/dashboard/order");
         // setCreatedUserEmail(email);
       });
     console.log("useremail", productDetails);
@@ -125,7 +125,10 @@ const ProductDetails = () => {
         </table>
         {isBuyer && (
           <div className="card-actions justify-center">
-            <button onClick={handleOrder} className="btn btn-primary">
+            <button
+              onClick={() => handleOrder(productDetails)}
+              className="btn btn-primary"
+            >
               Order Now
             </button>
           </div>

@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider";
 import useTitle from "../../../hooks/useTitle";
 
@@ -55,7 +56,7 @@ const Order = () => {
                 <th>{user?.email}</th>
                 <th>Name</th>
                 <th>Email</th>
-                <th>User Type</th>
+                <th>Price</th>
                 <th>Buy Now</th>
                 <th>Delete</th>
               </tr>
@@ -74,16 +75,30 @@ const Order = () => {
                       </th>
                       <td>{order.title}</td>
                       <td>{order?.email}</td>
-                      <td>{order.buyer_email}</td>
+                      <td>{order.resalePrice}</td>
 
-                      <td>
-                        <button
-                          onClick={() => handlePayment(order)}
-                          className="btn btn-xs btn-secondary"
-                        >
-                          Paid
-                        </button>
-                      </td>
+                      {order?.paid !== "paid" ? (
+                        <>
+                          <td>
+                            <Link to={`/deshboard/payment/${order._id}`}>
+                              <button className="btn btn-xs btn-secondary">
+                                Paid
+                              </button>
+                            </Link>
+                          </td>
+                        </>
+                      ) : (
+                        <>
+                          <td>
+                            <button
+                              disabled
+                              className="btn btn-xs btn-secondary"
+                            >
+                              Paid
+                            </button>
+                          </td>
+                        </>
+                      )}
                       <td>
                         <button
                           onClick={() => handleDelete(order)}
