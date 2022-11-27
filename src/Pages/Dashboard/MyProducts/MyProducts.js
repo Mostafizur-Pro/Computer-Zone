@@ -91,7 +91,7 @@ const MyProducts = () => {
             <tbody>
               {allProducts.map((product, i) => (
                 <>
-                  {product?.email === user?.email && (
+                  {product?.sellerEmail === user?.email && (
                     <tr key={product._id}>
                       <th>
                         <img
@@ -100,7 +100,9 @@ const MyProducts = () => {
                           alt=""
                         ></img>
                       </th>
-                      <td>{product.title}</td>
+                      <td>
+                        {product.title} <br /> {product.sellerEmail}
+                      </td>
                       <td>{product.condition}</td>
                       <td>{product.resalePrice}</td>
 

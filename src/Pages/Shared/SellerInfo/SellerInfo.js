@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 const SellerInfo = (email) => {
-  const [userInfo, setUserInfo] = useState([]);
+  const [sellerInfo, setSellerInfo] = useState([]);
 
   useEffect(() => {
     if (email) {
@@ -9,11 +9,11 @@ const SellerInfo = (email) => {
         .then((res) => res.json())
         .then((data) => {
           // console.log(data);
-          setUserInfo(data);
+          setSellerInfo(data);
         });
     }
   }, [email]);
-  return [userInfo];
+  return [sellerInfo];
 };
 
 export default SellerInfo;

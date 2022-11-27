@@ -17,6 +17,9 @@ const ProductDetailsItem = ({ appointmentOption, setTreatment }) => {
     product_details,
     resalePrice,
     usedYear,
+    sellerEmail,
+    sellerName,
+    number,
   } = appointmentOption;
   console.log("userInfo", appointmentOption);
   return (
@@ -129,16 +132,16 @@ const ProductDetailsItem = ({ appointmentOption, setTreatment }) => {
                 </td>
               </tr>
               <tr>
-                <th>User Name</th>
-                <td>: {user.displayName}</td>
+                <th>Seller Name</th>
+                <td>: {sellerName}</td>
               </tr>
               <tr>
-                <th>User Email</th>
-                <td>: {user.email}</td>
+                <th>Seller Email</th>
+                <td>: {sellerEmail}</td>
               </tr>
               <tr>
-                <th>User Number</th>
-                <td>: {user.number}</td>
+                <th>Seller Number</th>
+                <td>: {number}</td>
               </tr>
             </tbody>
           </table>

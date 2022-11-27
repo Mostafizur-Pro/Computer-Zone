@@ -3,12 +3,14 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider";
+import SellerInfo from "../../Shared/SellerInfo/SellerInfo";
 import useTitle from "./../../../hooks/useTitle";
 
 const AddProduct = () => {
   useTitle("Add_Products");
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
+  const [sellerInfo] = SellerInfo(user?.email);
   const [imgbb, setImgbb] = useState("");
   // console.log("imageDataLink", imageData);
   // const imageHostKey = process.env.REACT_APP_key;
@@ -46,8 +48,9 @@ const AddProduct = () => {
           // console.log("img link", imageData);
           const addProduct = {
             ...data,
-            userEmail: user.email,
-            userNumber: user.number,
+            sellerEmail: sellerInfo.email,
+
+            sellerName: sellerInfo.name,
 
             currentTime: new Date(),
             image_url: imgData.data.display_url,
@@ -64,7 +67,7 @@ const AddProduct = () => {
   };
 
   const saveUser = (addProduct) => {
-    // console.log("saveuser", addProduct);
+    console.log("saveuser", addProduct);
     fetch("http://localhost:5000/addProduct", {
       method: "POST",
       headers: {
@@ -77,7 +80,7 @@ const AddProduct = () => {
         // console.log(data);
         if (data.acknowledged) {
           toast.success("Product add");
-          navigate("/dashboard/myproducts");
+          // navigate("/dashboard/myproducts");
         } else {
           toast.error(data.message);
         }
@@ -292,7 +295,36 @@ const AddProduct = () => {
         </div>
 
         <br />
-        <input className="btn btn-accent w-full" type="submit" value="Submit" />
+        {/* <input className="btn btn-accent w-full" type="submit" value="Submit" /> */}
+        {/* The button to open modal */}
+        <label htmlFor="my-modal" className="btn">
+          open modal
+        </label>
+
+        {/* Put this part before </body> tag */}
+        <input type="checkbox" id="my-modal" className="modal-toggle" />
+        <div className="modal">
+          <div className="modal-box">
+            <h3 className="font-bold text-lg">
+              Congratulations random Internet user!
+            </h3>
+            <p className="py-4">
+              You've been selected for a chance to get one year of subscription
+              to use Wikipedia for free!
+            </p>
+            <div className="modal-action">
+              <label
+                htmlFor="my-modal"
+                type="submit"
+                value="Submit"
+                className="btn"
+              >
+                Submit
+              </label>
+              {/* <input className="btn btn-accent w-full" type="submit" value="Submit" /> */}
+            </div>
+          </div>
+        </div>
       </form>
     </div>
   );
