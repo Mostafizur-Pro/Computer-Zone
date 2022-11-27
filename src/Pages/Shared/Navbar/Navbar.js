@@ -3,12 +3,15 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider";
 
 import Logo from "../Logo/Logo";
+import SellerInfo from "../SellerInfo/SellerInfo";
 
 const Navbar = () => {
   const { user, logOut, setTheme, theme } = useContext(AuthContext);
 
   const [users, setUsers] = useState([]);
+  const [sellerInfo] = SellerInfo(user?.email);
   // console.log(users.length, "navber");
+  console.log("sellerinfo", sellerInfo);
 
   useEffect(() => {
     fetch(`http://localhost:5000/users/${user?.email}`)
@@ -91,21 +94,21 @@ const Navbar = () => {
 
       {user?.email ? (
         <>
-          {users?.userType === "Admin" && (
+          {sellerInfo?.userType === "Admin" && (
             <>
               <li>
                 <Link to="/dashboard/admin">Dashboard</Link>
               </li>
             </>
           )}
-          {users?.userType === "Seller" && (
+          {sellerInfo?.userType === "Seller" && (
             <>
               <li>
                 <Link to="/dashboard/myproducts">Dashboard</Link>
               </li>
             </>
           )}
-          {users?.userType === "Buyer" && (
+          {sellerInfo?.userType === "Buyer" && (
             <>
               <li>
                 <Link to="/dashboard/order">Dashboard</Link>

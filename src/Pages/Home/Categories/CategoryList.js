@@ -1,14 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import { Link, useLoaderData } from "react-router-dom";
+import { AuthContext } from "../../../contexts/AuthProvider";
+import SellerInfo from "../../Shared/SellerInfo/SellerInfo";
 
 const CategoryList = ({ courseItem }) => {
   console.log("courseItem", courseItem);
+  // const { user } = useContext(AuthContext);
+  // const [sellerInfo] = SellerInfo(user?.email);
 
   const {
     category_name,
     title,
-    email,
+    sellerName,
     condition,
     originalPrice,
     product_details,
@@ -18,6 +22,8 @@ const CategoryList = ({ courseItem }) => {
     Location,
     usedYear,
     currentTime,
+    sellerVarify,
+    number,
     _id,
   } = courseItem;
   // const categories = useLoaderData();
@@ -43,12 +49,30 @@ const CategoryList = ({ courseItem }) => {
             <span className="line-through rounded rounded-lg">
               ${originalPrice}
             </span>
-            <span className="text-xl"> Price: ${resalePrice}</span> <br />
+            <span className="text-xl font-semibold">
+              {" "}
+              Price: ${resalePrice}
+            </span>{" "}
+            <br />
             <span>
               Used: {usedYear} {usedYear >= 1 ? <>years</> : <>year</>}
             </span>
           </p>
-          <p>Seller Name: {email}</p>
+          <p>
+            Seller Name: {sellerName}{" "}
+            {sellerVarify === "verify" && (
+              <>
+                {" "}
+                <input
+                  type="checkbox"
+                  checked
+                  className="checkbox ml-3 checkbox-primary"
+                />
+                <span className="label-text text-primary">verify seller</span>
+              </>
+            )}
+          </p>
+          <p>Seller Number: {number}</p>
           <div className="card-actions justify-end">
             <p>Post Time : {currentTime}</p>
             <Link to={`/productdetails/${_id}`}>

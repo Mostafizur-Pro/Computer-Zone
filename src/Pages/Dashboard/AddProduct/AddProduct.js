@@ -49,9 +49,8 @@ const AddProduct = () => {
           const addProduct = {
             ...data,
             sellerEmail: sellerInfo.email,
-
             sellerName: sellerInfo.name,
-
+            sellerVarify: sellerInfo.role,
             currentTime: new Date(),
             image_url: imgData.data.display_url,
           };
@@ -80,7 +79,7 @@ const AddProduct = () => {
         // console.log(data);
         if (data.acknowledged) {
           toast.success("Product add");
-          // navigate("/dashboard/myproducts");
+          navigate("/dashboard/myproducts");
         } else {
           toast.error(data.message);
         }
@@ -306,20 +305,21 @@ const AddProduct = () => {
         <div className="modal">
           <div className="modal-box">
             <h3 className="font-bold text-lg">
-              Congratulations random Internet user!
+              Do you Add your Product, Please Submit !
             </h3>
-            <p className="py-4">
+            {/* <p className="py-4">
               You've been selected for a chance to get one year of subscription
               to use Wikipedia for free!
-            </p>
+            </p> */}
             <div className="modal-action">
+              <input className="btn btn-accent " type="submit" value="Submit" />
               <label
                 htmlFor="my-modal"
                 type="submit"
                 value="Submit"
                 className="btn"
               >
-                Submit
+                Cancel
               </label>
               {/* <input className="btn btn-accent w-full" type="submit" value="Submit" /> */}
             </div>

@@ -38,7 +38,7 @@ const Login = () => {
         // navigate(from, { replace: true });
       })
       .catch((error) => {
-        console.log(error.message);
+        // console.log(error.message);
         setLoginError(error.message);
       });
   };
@@ -58,10 +58,10 @@ const Login = () => {
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log("saveUser", data);
+            // console.log("saveUser", data);
             // setCreatedUserEmail(email);
           });
-        navigate(from, { replace: true });
+        // navigate(from, { replace: true });
       })
       .catch((error) => console.error(error));
   };

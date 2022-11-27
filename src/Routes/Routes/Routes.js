@@ -23,6 +23,7 @@ import SellerRoute from "./../SellerRoute/SellerRoute";
 import Payment from "../../Pages/Dashboard/Payment/Payment";
 import MyBuyers from "../../Pages/Dashboard/MyBuyers/MyBuyers";
 import ReportAdmin from "../../Pages/Dashboard/ReportAdmin/ReportAdmin";
+import PageError from "../../Pages/Shared/PageError/PageError";
 
 const router = createBrowserRouter([
   {
@@ -167,6 +168,10 @@ const router = createBrowserRouter([
         ),
       },
     ],
+  },
+  {
+    path: "*",
+    element: <PageError></PageError>,
   },
 ]);
 
