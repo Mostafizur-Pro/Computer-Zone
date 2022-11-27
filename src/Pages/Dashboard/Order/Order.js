@@ -65,7 +65,7 @@ const Order = () => {
             <tbody>
               {allOrders.map((order, i) => (
                 <>
-                  {order?.email === user?.email && (
+                  {order?.user?.email === user?.email && (
                     <tr key={order._id}>
                       <th>
                         <img
@@ -75,7 +75,7 @@ const Order = () => {
                         ></img>
                       </th>
                       <td>{order.title}</td>
-                      <td>{order?.email}</td>
+                      <td>{order?.sellerEmail}</td>
                       <td>{order.resalePrice}</td>
 
                       {order?.paid !== "paid" ? (

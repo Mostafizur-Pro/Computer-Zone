@@ -23,33 +23,30 @@ const OrderModal = ({ treatment, setTreatment, refetch }) => {
   const handleBooking = (event) => {
     event.preventDefault();
     const form = event.target;
-
     const buyerPhone = form.phone.value;
     const buyerLocation = form.location.value;
-    // [3, 4, 5].map((value, i) => console.log(value))
-    const postOrder = {
+
+    const orders = {
       ...treatment,
       user,
       paid: "unpaid",
       buyerPhone,
       buyerLocation,
       orderDate,
-      //  price,
     };
-    // setTreatment(order);
 
-    console.log("orderModals", postOrder);
+    console.log("orderModals", orders);
     fetch("http://localhost:5000/orders", {
       method: "POST",
-      // headers: {
-      //   "content-type": "application/json",
-      // },
-      body: JSON.stringify(postOrder),
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(orders),
     })
       .then((res) => res.json())
       .then((data) => {
-        toast.success("Order Complete");
-        console.log(data);
+        // toast.success("Order Complete");
+        console.log("order", data);
         if (data.acknowledged) {
           //  setTreatment(null);
           toast.success("Booking confirmed");

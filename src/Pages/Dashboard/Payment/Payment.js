@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from "react";
+import { Elements } from "@stripe/react-stripe-js";
+
 import { useLoaderData } from "react-router-dom";
 import useTitle from "../../../hooks/useTitle";
 import CheckOutForm from "./CheckOutForm";
+import { loadStripe } from "@stripe/stripe-js";
+
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PK);
 
 const Payment = () => {
   useTitle("Payment");
+
   const order = useLoaderData();
-  console.log("payment order", order);
   const { title, resalePrice, category } = order;
+  console.log("payment order", order);
 
   // const [allOrdersData, setAllOrdersData] = useState([]);
   // useEffect(() => {
@@ -28,7 +34,9 @@ const Payment = () => {
         Please pay <strong>${resalePrice}</strong> for your order on {category}{" "}
       </p>
       <div className="w-96 my-12">
-        <CheckOutForm order={order}></CheckOutForm>
+        <Elements stripe={stripePromise}>
+          <CheckOutForm order={order}></CheckOutForm>
+        </Elements>
         {/* <Elements stripe={stripePromise}>
             <CheckoutForm booking={booking} />
           </Elements>  */}
