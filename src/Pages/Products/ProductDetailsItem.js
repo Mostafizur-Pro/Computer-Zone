@@ -21,7 +21,7 @@ const ProductDetailsItem = ({ appointmentOption, setTreatment }) => {
     sellerName,
     number,
   } = appointmentOption;
-  console.log("userInfo", appointmentOption);
+  // console.log("userInfo", appointmentOption);
   return (
     <div>
       <div className="my-10">

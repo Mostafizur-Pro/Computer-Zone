@@ -27,7 +27,7 @@ const OrderModal = ({ treatment, setTreatment, refetch }) => {
     const buyerPhone = form.phone.value;
     const buyerLocation = form.location.value;
     // [3, 4, 5].map((value, i) => console.log(value))
-    const order = {
+    const postOrder = {
       ...treatment,
       user,
       paid: "unpaid",
@@ -36,13 +36,15 @@ const OrderModal = ({ treatment, setTreatment, refetch }) => {
       orderDate,
       //  price,
     };
-    console.log(order);
+    // setTreatment(order);
+
+    console.log("orderModals", postOrder);
     fetch("http://localhost:5000/orders", {
       method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(order),
+      // headers: {
+      //   "content-type": "application/json",
+      // },
+      body: JSON.stringify(postOrder),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -51,12 +53,13 @@ const OrderModal = ({ treatment, setTreatment, refetch }) => {
         if (data.acknowledged) {
           //  setTreatment(null);
           toast.success("Booking confirmed");
+          // navigate("/dashboard/order");
           //  refetch();
         } else {
           toast.error(data.message);
         }
       });
-    console.log("useremail", order);
+    // console.log("useremail", order);
   };
 
   return (

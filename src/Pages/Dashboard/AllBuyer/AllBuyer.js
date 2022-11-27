@@ -57,16 +57,12 @@ const AllBuyer = () => {
                       <td>{seller.userType}</td>
 
                       <td>
-                        {seller?.userType === "admin" && (
-                          <>
-                            <button
-                              onClick={() => handleDelete(seller)}
-                              className="btn btn-xs btn-danger"
-                            >
-                              Delete
-                            </button>
-                          </>
-                        )}
+                        <button
+                          onClick={() => handleDelete(seller)}
+                          className="btn btn-xs btn-danger"
+                        >
+                          Delete
+                        </button>
                       </td>
                     </tr>
                   )}

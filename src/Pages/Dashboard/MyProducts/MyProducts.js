@@ -7,9 +7,9 @@ import useTitle from "./../../../hooks/useTitle";
 
 const MyProducts = () => {
   useTitle("MyProducts");
-  const [allProducts, setAllProducts] = useState([]);
 
   const { user } = useContext(AuthContext);
+  const [allProducts, setAllProducts] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:5000/productAll")
@@ -52,9 +52,8 @@ const MyProducts = () => {
         // refetch();
       });
   };
-  const handleAdvertisement = (product) => {
-    console.log(product);
 
+  const handleAdvertisement = (product) => {
     fetch("http://localhost:5000/advertisement", {
       method: "POST",
       headers: {
@@ -91,7 +90,7 @@ const MyProducts = () => {
             <tbody>
               {allProducts.map((product, i) => (
                 <>
-                  {product?.sellerEmail === user?.email && (
+                  {product?.email === user?.email && (
                     <tr key={product._id}>
                       <th>
                         <img

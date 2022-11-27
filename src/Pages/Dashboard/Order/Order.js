@@ -8,22 +8,20 @@ const Order = () => {
   const { user } = useContext(AuthContext);
   console.log(user);
 
-  const [orders, setOrders] = useState([]);
+  const [allOrders, setAllOrders] = useState([]);
+
   useEffect(() => {
     fetch("http://localhost:5000/orders")
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);
-        setOrders(data);
+        setAllOrders(data);
       });
   }, []);
-  console.log("order", orders);
+  console.log("order", allOrders);
 
   const handleDelete = (order) => {
-    console.log("delete");
-    // fetch(`http://localhost:5000/orders/${order._id}`, {
-    //   method: "DELETE",
-    // }).then((res) => res.json());
+    console.log("delete", order._id);
     fetch(`http://localhost:5000/orders/${order._id}`, {
       method: "DELETE",
       // headers: {
@@ -33,12 +31,11 @@ const Order = () => {
       .then((res) => res.json())
       .then((data) => {
         // console.log("DELETE DATA", data);
-        alert("Are you DELETE this product");
-        const remaining = orders.filter(
-          (products) => products._id !== order._id
+        alert("Are you DELETE this order");
+        const remainingOrders = allOrders.filter(
+          (orders) => orders._id !== order._id
         );
-        setOrders(remaining);
-        console.log("remaining", remaining, orders, order._id);
+        setAllOrders(remainingOrders);
         // refetch();
       });
   };
@@ -66,7 +63,7 @@ const Order = () => {
               </tr>
             </thead>
             <tbody>
-              {orders.map((order, i) => (
+              {allOrders.map((order, i) => (
                 <>
                   {order?.email === user?.email && (
                     <tr key={order._id}>
@@ -115,7 +112,33 @@ const Order = () => {
                   )}
                 </>
               ))}
-              {/* {orders.map((order, i) => (
+            </tbody>
+          </table>
+        </div>
+      </div>
+      {/* -------------------------------------- */}
+      {/* -------------------------------------- */}
+      {/* -------------------------------------- */}
+      {/* -------------------------------------- */}
+      {/* -------------------------------------- */}
+      <div>
+        <h2 className="text-3xl text-center my-10 font-bold">
+          All Orders List
+        </h2>
+        <div className="overflow-x-auto">
+          <table className="table  w-full">
+            <thead>
+              <tr>
+                <th>{user?.email}</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Price</th>
+                <th>Buy Now</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              {allOrders.map((order, i) => (
                 <>
                   <tr key={order._id}>
                     <th>
@@ -127,11 +150,27 @@ const Order = () => {
                     </th>
                     <td>{order.title}</td>
                     <td>{order?.email}</td>
-                    <td>{order.buyer_email}</td>
+                    <td>{order.resalePrice}</td>
 
-                    <td>
-                      <button className="btn btn-xs btn-secondary">Paid</button>
-                    </td>
+                    {order?.paid !== "paid" ? (
+                      <>
+                        <td>
+                          <Link to={`/dashboard/payment/${order?._id}`}>
+                            <button className="btn btn-primary btn-sm">
+                              Pay
+                            </button>
+                          </Link>
+                        </td>
+                      </>
+                    ) : (
+                      <>
+                        <td>
+                          <button disabled className="btn btn-xs btn-secondary">
+                            Paid
+                          </button>
+                        </td>
+                      </>
+                    )}
                     <td>
                       <button
                         onClick={() => handleDelete(order)}
@@ -142,7 +181,7 @@ const Order = () => {
                     </td>
                   </tr>
                 </>
-              ))} */}
+              ))}
             </tbody>
           </table>
         </div>

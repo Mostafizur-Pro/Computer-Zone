@@ -17,6 +17,9 @@ const AllSeller = () => {
     console.log("delete");
     fetch(`http://localhost:5000/users/${product._id}`, {
       method: "DELETE",
+      // headers: {
+      //   "content-type": "application/json",
+      // },
     })
       .then((res) => res.json())
       .then((data) => {
@@ -53,7 +56,11 @@ const AllSeller = () => {
                 <>
                   {seller.userType === "Seller" && (
                     <tr key={seller._id}>
-                      <th>{i + 1}</th>
+                      <th>
+                        <div className="w-24 rounded-full">
+                          <img src={seller.image} alt="" />
+                        </div>
+                      </th>
                       <td>{seller.name}</td>
                       <td>{seller.email}</td>
                       <td>{seller.userType}</td>
@@ -68,16 +75,12 @@ const AllSeller = () => {
                     )}
                   </td> */}
                       <td>
-                        {seller?.userType === "admin" && (
-                          <>
-                            <button
-                              onClick={() => handleDelete(seller)}
-                              className="btn btn-xs btn-danger"
-                            >
-                              Delete
-                            </button>
-                          </>
-                        )}
+                        <button
+                          onClick={() => handleDelete(seller)}
+                          className="btn btn-xs btn-danger"
+                        >
+                          Delete
+                        </button>
                       </td>
                     </tr>
                   )}
