@@ -31,7 +31,7 @@ const Signup = () => {
     createUser(data.email, data.password)
       .then((result) => {
         const user = result.user;
-        console.log("user", user);
+        // console.log("user", user);
       })
       .catch((error) => {
         console.log(error);
@@ -50,7 +50,7 @@ const Signup = () => {
       .then((res) => res.json())
       .then((imgData) => {
         if (imgData.success) {
-          console.log(imgData.data.url);
+          // console.log(imgData.data.url);
           const userInfo = {
             name: data.name,
             email: data.email,
@@ -62,7 +62,7 @@ const Signup = () => {
             displayName: data.name,
             photoURL: imgData.data.url,
           };
-          console.log("useFire", userInfofirebase);
+          // console.log("useFire", userInfofirebase);
           updateUserProfile(userInfofirebase);
 
           saveUser(userInfo);
@@ -78,7 +78,7 @@ const Signup = () => {
 
   const saveUser = (userInfo) => {
     // const user = { userInfo };
-    console.log(userInfo);
+    // console.log(userInfo);
 
     fetch("http://localhost:5000/users", {
       method: "POST",
@@ -89,7 +89,7 @@ const Signup = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("saveUser", data);
+        // console.log("saveUser", data);
         setCreatedUserEmail(userInfo.email);
         // setCreatedUserEmail(email);
       });

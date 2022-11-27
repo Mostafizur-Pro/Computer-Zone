@@ -26,6 +26,9 @@ const Order = () => {
     // }).then((res) => res.json());
     fetch(`http://localhost:5000/orders/${order._id}`, {
       method: "DELETE",
+      // headers: {
+      //   authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      // },
     })
       .then((res) => res.json())
       .then((data) => {
@@ -35,6 +38,7 @@ const Order = () => {
           (products) => products._id !== order._id
         );
         setOrders(remaining);
+        console.log("remaining", remaining, orders, order._id);
         // refetch();
       });
   };
@@ -80,9 +84,9 @@ const Order = () => {
                       {order?.paid !== "paid" ? (
                         <>
                           <td>
-                            <Link to={`/deshboard/payment/${order._id}`}>
-                              <button className="btn btn-xs btn-secondary">
-                                Paid
+                            <Link to={`/dashboard/payment/${order?._id}`}>
+                              <button className="btn btn-primary btn-sm">
+                                Pay
                               </button>
                             </Link>
                           </td>

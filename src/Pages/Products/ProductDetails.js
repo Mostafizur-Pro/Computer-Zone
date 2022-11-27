@@ -13,6 +13,7 @@ const ProductDetails = () => {
 
   console.log("user name", user);
   const [products] = useLoaderData();
+
   const {
     title,
     category,
@@ -26,7 +27,7 @@ const ProductDetails = () => {
 
   // const product = products + user.email;
 
-  const productDetails = { ...products, email: user?.email };
+  const productDetails = { ...products, email: user?.email, paid: "unpaid" };
   const handleOrder = (productDetails) => {
     console.log("id", productDetails);
     // console.log(productDetails);

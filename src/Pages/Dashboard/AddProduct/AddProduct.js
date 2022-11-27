@@ -38,12 +38,12 @@ const AddProduct = () => {
     })
       .then((res) => res.json())
       .then((imgData) => {
-        console.log("dispaly", imgData.data.display_url);
+        // console.log("dispaly", imgData.data.display_url);
 
         if (imgData.success) {
           const imageData = imgData.data.display_url;
           setImgbb(imageData);
-          console.log("img link", imageData);
+          // console.log("img link", imageData);
           const addProduct = {
             ...data,
             email: user.email,
@@ -62,7 +62,7 @@ const AddProduct = () => {
   };
 
   const saveUser = (addProduct) => {
-    console.log("saveuser", addProduct);
+    // console.log("saveuser", addProduct);
     fetch("http://localhost:5000/addProduct", {
       method: "POST",
       headers: {
@@ -72,7 +72,7 @@ const AddProduct = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         if (data.acknowledged) {
           toast.success("Product add");
           navigate("/dashboard/myproducts");

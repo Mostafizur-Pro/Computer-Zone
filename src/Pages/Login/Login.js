@@ -11,6 +11,7 @@ const Login = () => {
   useTitle("Login");
   const { signIn, createGoogle } = useContext(AuthContext);
   const [loginUserEmail, setLoginUserEmail] = useState("");
+  const [loginError, setLoginError] = useState("");
   const [token] = useToken(loginUserEmail);
 
   const {
@@ -20,6 +21,7 @@ const Login = () => {
   } = useForm();
   const location = useLocation();
   const navigate = useNavigate();
+  // console.log("tokenn", token);
 
   const from = location.state?.from?.pathname || "/";
   if (token) {
@@ -27,15 +29,17 @@ const Login = () => {
   }
 
   const handleLogin = (data) => {
+    setLoginError("");
     signIn(data.email, data.password)
       .then((result) => {
         const user = result.user;
-        console.log(user);
-        setLoginUserEmail(data.email);
-        navigate(from, { replace: true });
+        console.log(user.email);
+        setLoginUserEmail(user.email);
+        // navigate(from, { replace: true });
       })
       .catch((error) => {
         console.log(error.message);
+        setLoginError(error.message);
       });
   };
   const handleGoogleSignIn = (event) => {
@@ -123,6 +127,9 @@ const Login = () => {
               </div>
               <div className="form-control mt-6">
                 <button className="btn btn-primary">Login</button>
+              </div>
+              <div>
+                {loginError && <p className="text-red-600">{loginError}</p>}
               </div>
               <p>
                 New to Doctors Portal{" "}

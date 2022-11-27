@@ -17,7 +17,7 @@ const Admin = () => {
   }, []);
 
   const handleMakeAdmin = (id) => {
-    console.log("approved", id);
+    // console.log("approved", id);
 
     fetch(`http://localhost:5000/users/admin/${id}`, {
       method: "PUT",
@@ -34,13 +34,16 @@ const Admin = () => {
         toast.success("Make verify successful.");
       });
   };
-  console.log("Admin", users);
+  // console.log("Admin", users);
 
   const handleDelete = (seller) => {
-    console.log("delete");
+    // console.log("delete");
 
     fetch(`http://localhost:5000/users/${seller._id}`, {
       method: "DELETE",
+      headers: {
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
     })
       .then((res) => res.json())
       .then((data) => {
@@ -70,7 +73,7 @@ const Admin = () => {
             <tbody>
               {users.map((user, i) => (
                 <>
-                  {user.userType === "admin" && (
+                  {user.userType === "Admin" && (
                     <tr key={user._id}>
                       <th>{i + 1}</th>
                       <td>{user.name}</td>

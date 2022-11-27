@@ -11,7 +11,7 @@ const RightNavber = ({ category }) => {
         setCategories(data);
       });
   }, []);
-  console.log(categories);
+  // console.log(categories);
   return (
     <div>
       {" "}

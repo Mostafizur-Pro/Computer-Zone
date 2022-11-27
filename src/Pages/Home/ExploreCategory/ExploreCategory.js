@@ -14,7 +14,7 @@ const ExploreCategory = () => {
       <div className="flex  justify-between my-10 mx-20">
         <div>
           <Link
-            to="/categorydetails/laptop"
+            to="/categorydetails/Laptop"
             className="bg-image hover-bordered"
           >
             <img src={img1} alt="" />

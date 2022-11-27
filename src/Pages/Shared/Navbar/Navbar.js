@@ -8,7 +8,7 @@ const Navbar = () => {
   const { user, logOut, setTheme, theme } = useContext(AuthContext);
 
   const [users, setUsers] = useState([]);
-  console.log(users.length, "navber");
+  // console.log(users.length, "navber");
 
   useEffect(() => {
     fetch(`http://localhost:5000/users/${user?.email}`)
@@ -81,10 +81,52 @@ const Navbar = () => {
         <Link to="/blog">Blog</Link>
       </li>
 
+      {/* {users?.userType === "Admin" && (
+        <>
+          <li>
+            <Link to="/dashboard/admin">Dashboard</Link>
+          </li>
+        </>
+      )} */}
+
       {user?.email ? (
         <>
+          {users?.userType === "Admin" && (
+            <>
+              <li>
+                <Link to="/dashboard/admin">Dashboard</Link>
+              </li>
+            </>
+          )}
+          {users?.userType === "Seller" && (
+            <>
+              <li>
+                <Link to="/dashboard/myproducts">Dashboard</Link>
+              </li>
+            </>
+          )}
+          {users?.userType === "Buyer" && (
+            <>
+              <li>
+                <Link to="/dashboard/order">Dashboard</Link>
+              </li>
+            </>
+          )}
+        </>
+      ) : (
+        <>
+          <li>
+            <Link to="/login">Login</Link>
+          </li>
+        </>
+      )}
+
+      {/* {user?.email ? (
+        <>
           {" "}
-          {users?.userType === "Seller" ? (
+          {users?.userType === "Seller" &&
+          users?.userType !== "Buyer" &&
+          users?.userType !== "Admin" ? (
             <>
               <li>
                 <Link to="/dashboard/myproducts">Dashboard</Link>
@@ -112,7 +154,7 @@ const Navbar = () => {
             <Link to="/login">Login</Link>
           </li>
         </>
-      )}
+      )} */}
     </>
   );
   return (
@@ -198,7 +240,7 @@ const Navbar = () => {
               )}
 
               <div className="dropdown dropdown-end">
-                {users?.userType === "admin" ? (
+                {users?.userType === "Admin" ? (
                   <>
                     <label tabIndex={0} className=" online avatar">
                       <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">

@@ -25,9 +25,9 @@ const Dashboard = () => {
           className="drawer-toggle"
         />
         <div className="drawer-content">
-          <h3 className="text-center text-3xl font-bold">
+          {/* <h3 className="text-center text-3xl font-bold">
             Welcom to Computer Zone
-          </h3>
+          </h3> */}
           <Outlet></Outlet>
         </div>
         <div className="drawer-side">
