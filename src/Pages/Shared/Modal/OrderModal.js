@@ -52,7 +52,7 @@ const OrderModal = ({ treatment, setTreatment, refetch }) => {
           //  setTreatment(null);
           toast.success("Booking confirmed");
           navigate("/dashboard/order");
-          //  refetch();
+          refetch();
         } else {
           toast.error(data.message);
         }

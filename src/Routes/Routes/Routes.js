@@ -24,6 +24,7 @@ import Payment from "../../Pages/Dashboard/Payment/Payment";
 import MyBuyers from "../../Pages/Dashboard/MyBuyers/MyBuyers";
 import ReportAdmin from "../../Pages/Dashboard/ReportAdmin/ReportAdmin";
 import PageError from "../../Pages/Shared/PageError/PageError";
+import MyWishList from "../../Pages/Dashboard/MyWishList/MyWishList";
 
 const router = createBrowserRouter([
   {
@@ -97,6 +98,14 @@ const router = createBrowserRouter([
         element: (
           <BuyerRoute>
             <Order></Order>
+          </BuyerRoute>
+        ),
+      },
+      {
+        path: "/dashboard/mywishlist",
+        element: (
+          <BuyerRoute>
+            <MyWishList></MyWishList>
           </BuyerRoute>
         ),
       },

@@ -38,6 +38,9 @@ const Dashboard = () => {
                 <li>
                   <Link to="/dashboard/order">My Orders</Link>
                 </li>
+                <li>
+                  <Link to="/dashboard/mywishlist">My Wish List</Link>
+                </li>
               </>
             )}
             {isSeller && (

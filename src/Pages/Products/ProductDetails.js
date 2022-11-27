@@ -21,7 +21,7 @@ const ProductDetails = () => {
     refetch,
     isLoading,
   } = useQuery({
-    queryKey: ["appointmentOptions"],
+    queryKey: ["productAll"],
     queryFn: async () => {
       const res = await fetch(
         `http://localhost:5000/productAll/${products._id}`
