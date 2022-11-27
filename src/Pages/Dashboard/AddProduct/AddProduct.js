@@ -46,7 +46,9 @@ const AddProduct = () => {
           // console.log("img link", imageData);
           const addProduct = {
             ...data,
-            email: user.email,
+            userEmail: user.email,
+            userNumber: user.number,
+
             currentTime: new Date(),
             image_url: imgData.data.display_url,
           };
