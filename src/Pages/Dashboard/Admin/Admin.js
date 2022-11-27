@@ -1,20 +1,40 @@
+import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 import useTitle from "../../../hooks/useTitle";
+import Loading from "../../Shared/Loading/Loading";
 
 const Admin = () => {
   useTitle("AdminPanel");
-  const [users, setUsers] = useState([]);
+  // const [users, setUsers] = useState([]);
 
-  useEffect(() => {
-    fetch("http://localhost:5000/users")
-      .then((res) => res.json())
-      .then((data) => {
-        // console.log(data);
-        setUsers(data);
-      });
-  }, []);
+  // useEffect(() => {
+  //   fetch("http://localhost:5000/users")
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       // console.log(data);
+  //       setUsers(data);
+  //     });
+  // }, []);
+  const {
+    data: users = [0],
+    isLoading,
+    refetch,
+  } = useQuery({
+    queryKey: ["users"],
+    queryFn: async () => {
+      const res = await fetch("http://localhost:5000/users");
+      const data = await res.json();
+      return data;
+    },
+  });
+
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
+
+  console.log("admin user", users);
 
   const handleMakeAdmin = (id) => {
     // console.log("approved", id);
@@ -50,8 +70,9 @@ const Admin = () => {
         // console.log("DELETE DATA", data);
         alert("Are you DELETE this product");
         const remaining = users.filter((user) => user._id !== seller._id);
-        setUsers(remaining);
-        // refetch();
+        // setUsers(remaining);
+
+        refetch();
       });
   };
 

@@ -1,6 +1,5 @@
-import { useQuery } from "@tanstack/react-query";
 import React, { useContext, useEffect, useState } from "react";
-import toast from "react-hot-toast";
+
 import { AuthContext } from "../../../contexts/AuthProvider";
 import Advertisement from "./../../Home/Advertisement/Advertisement";
 import useTitle from "./../../../hooks/useTitle";

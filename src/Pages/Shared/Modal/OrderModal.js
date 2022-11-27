@@ -18,6 +18,7 @@ const OrderModal = ({ treatment, setTreatment, refetch }) => {
     resalePrice,
     usedYear,
     email,
+    sellerName,
   } = treatment;
 
   const handleBooking = (event) => {
@@ -70,6 +71,12 @@ const OrderModal = ({ treatment, setTreatment, refetch }) => {
             onSubmit={handleBooking}
             className="grid grid-cols-1 gap-3 mt-10"
           >
+            <label
+              htmlFor="my-modal"
+              className="btn btn-sm btn-circle absolute right-2 top-2"
+            >
+              ✕
+            </label>
             <input
               type="text"
               disabled
@@ -104,12 +111,14 @@ const OrderModal = ({ treatment, setTreatment, refetch }) => {
             <input
               name="phone"
               type="text"
+              required
               placeholder="Phone Number"
               className="input w-full input-bordered"
             />
             <input
               name="location"
               type="text"
+              required
               placeholder="Meet Locaton"
               className="input w-full input-bordered"
             />

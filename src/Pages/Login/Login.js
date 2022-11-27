@@ -6,9 +6,11 @@ import { AuthContext } from "../../contexts/AuthProvider";
 import useToken from "../../hooks/useToken";
 import login from "../../assete/LoginSignin/login.png";
 import useTitle from "../../hooks/useTitle";
+import useBuyer from "./../../hooks/useBuyer";
 
 const Login = () => {
   useTitle("Login");
+
   const { signIn, createGoogle } = useContext(AuthContext);
   const [loginUserEmail, setLoginUserEmail] = useState("");
   const [loginError, setLoginError] = useState("");
@@ -33,7 +35,7 @@ const Login = () => {
     signIn(data.email, data.password)
       .then((result) => {
         const user = result.user;
-        console.log(user.email);
+        // console.log(user.email);
         setLoginUserEmail(user.email);
         // navigate(from, { replace: true });
       })
@@ -47,8 +49,16 @@ const Login = () => {
     createGoogle()
       .then((result) => {
         const user = result.user;
-        const userInfo = { ...user, userType: "buyer" };
-        // console.log(userInfo);
+        setLoginUserEmail(user.email);
+        const userInfo = {
+          name: user.displayName,
+          email: user.email,
+          number: "",
+          image: user.photoURL,
+          userType: "buyer",
+        };
+        // console.log("user", user);
+
         fetch("http://localhost:5000/users", {
           method: "POST",
           headers: {
@@ -60,9 +70,11 @@ const Login = () => {
           .then((data) => {
             // console.log("saveUser", data);
             // setCreatedUserEmail(email);
+            // setLoginUserEmail(data.email);
           });
-        // navigate(from, { replace: true });
+        navigate(from, { replace: true });
       })
+
       .catch((error) => console.error(error));
   };
   return (

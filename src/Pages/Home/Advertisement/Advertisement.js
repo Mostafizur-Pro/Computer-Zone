@@ -1,20 +1,22 @@
+import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Loading from "./../../Shared/Loading/Loading";
 
 const Advertisement = () => {
-  const [product, setProduct] = useState([]);
-  useEffect(() => {
-    fetch("http://localhost:5000/advertisement")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        {
-          data.map((product) => {
-            setProduct(product);
-          });
-        }
-      });
-  }, []);
+  const { data: product = [0], isLoading } = useQuery({
+    queryKey: ["advertisement"],
+    queryFn: async () => {
+      const res = await fetch("http://localhost:5000/advertisement");
+      const data = await res.json();
+      return data;
+    },
+  });
+
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
+
   const {
     Location,
     category,
@@ -28,7 +30,7 @@ const Advertisement = () => {
     usedYear,
     _id,
     email,
-  } = product;
+  } = product[0];
   console.log("advertisment product", product);
   return (
     <>

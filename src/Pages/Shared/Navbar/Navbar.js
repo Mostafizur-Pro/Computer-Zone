@@ -11,7 +11,7 @@ const Navbar = () => {
   const [users, setUsers] = useState([]);
   const [sellerInfo] = SellerInfo(user?.email);
   // console.log(users.length, "navber");
-  console.log("sellerinfo", sellerInfo);
+  // console.log("sellerinfo", sellerInfo);
 
   useEffect(() => {
     fetch(`http://localhost:5000/users/${user?.email}`)
