@@ -50,7 +50,7 @@ const OrderModal = ({ treatment, setTreatment, refetch }) => {
         if (data.acknowledged) {
           //  setTreatment(null);
           toast.success("Booking confirmed");
-          // navigate("/dashboard/order");
+          navigate("/dashboard/order");
           //  refetch();
         } else {
           toast.error(data.message);

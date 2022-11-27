@@ -81,7 +81,7 @@ const Order = () => {
                       {order?.paid !== "paid" ? (
                         <>
                           <td>
-                            <Link to={`/dashboard/payment/${order?._id}`}>
+                            <Link to={`/dashboard/payment/${order._id}`}>
                               <button className="btn btn-primary btn-sm">
                                 Pay
                               </button>
