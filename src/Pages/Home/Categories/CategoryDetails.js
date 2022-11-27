@@ -34,7 +34,10 @@ const CategoryDetails = () => {
               {/* Total Item of Couse: */}
             </h2>
             {categories.map((category) => (
-              <CategoryList key={category._id} course={category}></CategoryList>
+              <CategoryList
+                key={category._id}
+                courseItem={category}
+              ></CategoryList>
             ))}
           </div>
         </div>

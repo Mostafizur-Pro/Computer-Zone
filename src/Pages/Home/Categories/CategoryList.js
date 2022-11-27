@@ -2,20 +2,24 @@ import React from "react";
 
 import { Link, useLoaderData } from "react-router-dom";
 
-const CategoryList = ({ course }) => {
-  console.log("course", course);
+const CategoryList = ({ courseItem }) => {
+  console.log("courseItem", courseItem);
 
   const {
     category_name,
     title,
+    email,
     condition,
     originalPrice,
     product_details,
     image_url,
     category,
     resalePrice,
+    Location,
+    usedYear,
+    currentTime,
     _id,
-  } = course;
+  } = courseItem;
   // const categories = useLoaderData();
   console.log("course", category_name);
 
@@ -30,15 +34,23 @@ const CategoryList = ({ course }) => {
           />
         </figure>
         <div className="card-body">
-          <h2 className="card-title text-3xl">{title}</h2>
+          <div>
+            <h2 className="card-title text-3xl">{title}</h2>
+            <p>Location: {Location}</p>
+          </div>
+
           <p className="">
             <span className="line-through rounded rounded-lg">
               ${originalPrice}
             </span>
-            <span className="text-xl"> Price: ${resalePrice}</span>
+            <span className="text-xl"> Price: ${resalePrice}</span> <br />
+            <span>
+              Used: {usedYear} {usedYear >= 1 ? <>years</> : <>year</>}
+            </span>
           </p>
-
+          <p>Seller Name: {email}</p>
           <div className="card-actions justify-end">
+            <p>Post Time : {currentTime}</p>
             <Link to={`/productdetails/${_id}`}>
               {" "}
               <button className="btn btn-primary">Product Details</button>
