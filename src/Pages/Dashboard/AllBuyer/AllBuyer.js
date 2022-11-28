@@ -7,7 +7,6 @@ const AllBuyer = () => {
   const [buyers, setBuyers] = useState([]);
 
   useEffect(() => {
-<<<<<<< HEAD
     axios
       .get(
         "https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/users"
@@ -17,13 +16,6 @@ const AllBuyer = () => {
 
         setBuyers(users);
       });
-=======
-    axios.get("http://localhost:5000/users").then((data) => {
-      const users = data.data;
-
-      setBuyers(users);
-    });
->>>>>>> b2cbf455e3c676f2454242a28da800495ed71b3d
   }, []);
 
   const handleDelete = (product) => {

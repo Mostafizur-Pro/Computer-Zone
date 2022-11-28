@@ -13,13 +13,9 @@ const MyWishList = () => {
   const [allWishListData, setAllWishListData] = useState([]);
 
   useEffect(() => {
-<<<<<<< HEAD
     fetch(
       "https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/wishlist"
     )
-=======
-    fetch("http://localhost:5000/wishlist")
->>>>>>> b2cbf455e3c676f2454242a28da800495ed71b3d
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);
@@ -30,7 +26,7 @@ const MyWishList = () => {
 
   const handleDelete = (order) => {
     console.log("delete", order._id);
-<<<<<<< HEAD
+
     fetch(
       `https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/wishlist/${order._id}`,
       {
@@ -40,14 +36,6 @@ const MyWishList = () => {
         // },
       }
     )
-=======
-    fetch(`http://localhost:5000/wishlist/${order._id}`, {
-      method: "DELETE",
-      // headers: {
-      //   authorization: `bearer ${localStorage.getItem("accessToken")}`,
-      // },
-    })
->>>>>>> b2cbf455e3c676f2454242a28da800495ed71b3d
       .then((res) => res.json())
       .then((data) => {
         // console.log("DELETE DATA", data);
@@ -61,7 +49,6 @@ const MyWishList = () => {
   };
 
   const handleBooking = (wishlist) => {
-<<<<<<< HEAD
     fetch(
       `https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/wishlist/buyer/${wishlist._id}`,
       {
@@ -71,21 +58,13 @@ const MyWishList = () => {
         // },
       }
     )
-=======
-    fetch(`http://localhost:5000/wishlist/buyer/${wishlist._id}`, {
-      method: "PUT",
-      // headers: {
-      //   authorization: `bearer ${localStorage.getItem("accessToken")}`,
-      // },
-    })
->>>>>>> b2cbf455e3c676f2454242a28da800495ed71b3d
       .then((res) => res.json())
       .then((data) => {
         toast.success("Make verify successful.");
       });
 
     // console.log("orderModals", orders);
-<<<<<<< HEAD
+
     fetch(
       "https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/bookings",
       {
@@ -96,15 +75,6 @@ const MyWishList = () => {
         body: JSON.stringify(wishlist),
       }
     )
-=======
-    fetch("http://localhost:5000/bookings", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(wishlist),
-    })
->>>>>>> b2cbf455e3c676f2454242a28da800495ed71b3d
       .then((res) => res.json())
       .then((data) => {
         // toast.success("Order Complete");

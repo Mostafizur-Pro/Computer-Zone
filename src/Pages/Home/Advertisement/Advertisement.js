@@ -7,13 +7,10 @@ const Advertisement = () => {
   const { data: product = [0], isLoading } = useQuery({
     queryKey: ["advertisement"],
     queryFn: async () => {
-<<<<<<< HEAD
       const res = await fetch(
         "https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/advertisement"
       );
-=======
-      const res = await fetch("http://localhost:5000/advertisement");
->>>>>>> b2cbf455e3c676f2454242a28da800495ed71b3d
+
       const data = await res.json();
       return data;
     },
