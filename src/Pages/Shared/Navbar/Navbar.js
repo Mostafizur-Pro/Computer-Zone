@@ -311,6 +311,9 @@ const Navbar = () => {
                     </Link>
                   </li>
                   <li>
+                    <Link to="/dashboard/admin">Dashboard</Link>
+                  </li>
+                  <li>
                     <Link>Settings</Link>
                   </li>
                   <li onClick={handleLogOut}>

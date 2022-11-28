@@ -68,7 +68,7 @@ const CategoryList = ({ courseItem }) => {
                   checked
                   className="checkbox ml-3 checkbox-primary"
                 />
-                <span className="label-text text-primary">verify seller</span>
+                <span className=" ml-2 text-primary">verify seller</span>
               </>
             )}
           </p>

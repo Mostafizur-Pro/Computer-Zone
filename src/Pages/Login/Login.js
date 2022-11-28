@@ -44,18 +44,15 @@ const Login = () => {
     console.log("isby", isBuyer, "se", isSeller, isAdmin);
     setLoginError("");
 
-    if (isBuyer === true || isSeller === true || isAdmin === true) {
-      signIn(data.email, data.password)
-        .then((result) => {
-          const user = result.user;
-          setLoginUserEmail(user.email);
-        })
-        .catch((error) => {
-          setLoginError(error.message);
-        });
-    } else {
-      toast.error("This email and password not match in server");
-    }
+    signIn(data.email, data.password)
+      .then((result) => {
+        const user = result.user;
+        setLoginUserEmail(user.email);
+        // navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        setLoginError(error.message);
+      });
   };
   const handleGoogleSignIn = (event) => {
     event.preventDefault();
@@ -97,7 +94,7 @@ const Login = () => {
     <div>
       <div className="hero min-h-screen ">
         <div className="hero-content flex-col  lg:flex-row">
-          <div className="card flex-shrink-0 h-4/6 w-full max-w-sm shadow-2xl bg-base-100">
+          <div className="card hidden sm:flex flex-shrink-0 h-4/6 w-full max-w-sm shadow-2xl bg-base-100">
             <img
               alt=""
               src={login}
@@ -116,7 +113,7 @@ const Login = () => {
               <div className="form-control w-full max-w-xs">
                 <label className="label">
                   {" "}
-                  <span className="label-text">Email</span>
+                  <span className="label">Email</span>
                 </label>
                 <input
                   type="text"
@@ -132,7 +129,7 @@ const Login = () => {
               <div className="form-control w-full max-w-xs">
                 <label className="label">
                   {" "}
-                  <span className="label-text">Password</span>
+                  <span className="label">Password</span>
                 </label>
                 <input
                   type="password"
@@ -147,7 +144,7 @@ const Login = () => {
                 />
                 <label className="label">
                   {" "}
-                  <span className="label-text">Forget Password?</span>
+                  <span className="label">Forget Password?</span>
                 </label>
                 {errors.password && (
                   <p className="text-red-600">{errors.password?.message}</p>

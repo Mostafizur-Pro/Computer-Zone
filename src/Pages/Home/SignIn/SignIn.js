@@ -33,7 +33,7 @@ const SignIn = () => {
           <div className="card-body">
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Name</span>
+                <span className="label">Name</span>
               </label>
               <input
                 type="text"
@@ -43,7 +43,7 @@ const SignIn = () => {
             </div>
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Email</span>
+                <span className="label">Email</span>
               </label>
               <input
                 type="text"

@@ -96,7 +96,7 @@ const AddProductDetails = ({ setTreatment, appointmentOption }) => {
       >
         <label className="label">
           {" "}
-          <span className="label-text">Product Name</span>
+          <span className="label">Product Name</span>
         </label>
         <input
           type="text"
@@ -113,7 +113,7 @@ const AddProductDetails = ({ setTreatment, appointmentOption }) => {
           <div>
             <label className="label">
               {" "}
-              <span className="label-text">Original Price</span>
+              <span className="label">Original Price</span>
             </label>
             <input
               type="text"
@@ -129,7 +129,7 @@ const AddProductDetails = ({ setTreatment, appointmentOption }) => {
           <div>
             <label className="label">
               {" "}
-              <span className="label-text">Price</span>
+              <span className="label">Price</span>
             </label>
             <input
               type="text"
@@ -145,7 +145,7 @@ const AddProductDetails = ({ setTreatment, appointmentOption }) => {
         </div>
         <label className="label">
           {" "}
-          <span className="label-text">Product Condition</span>
+          <span className="label">Product Condition</span>
         </label>
 
         <select
@@ -167,7 +167,7 @@ const AddProductDetails = ({ setTreatment, appointmentOption }) => {
 
         <label className="label">
           {" "}
-          <span className="label-text">Mobile Number</span>
+          <span className="label">Mobile Number</span>
         </label>
         <input
           type="text"
@@ -183,7 +183,7 @@ const AddProductDetails = ({ setTreatment, appointmentOption }) => {
           <div>
             <label className="label">
               {" "}
-              <span className="label-text">Location</span>
+              <span className="label">Location</span>
             </label>
             <select
               {...register("Location", {
@@ -204,7 +204,7 @@ const AddProductDetails = ({ setTreatment, appointmentOption }) => {
           <div className="ml-10">
             <label className="label">
               {" "}
-              <span className="label-text">Category</span>
+              <span className="label">Category</span>
             </label>
             <select
               {...register("category", {
@@ -230,7 +230,7 @@ const AddProductDetails = ({ setTreatment, appointmentOption }) => {
 
         <label className="label">
           {" "}
-          <span className="label-text">Use Year</span>
+          <span className="label">Use Year</span>
         </label>
         <input
           type="text"
@@ -244,7 +244,7 @@ const AddProductDetails = ({ setTreatment, appointmentOption }) => {
         )}
         <label className="label">
           {" "}
-          <span className="label-text">Product Details</span>
+          <span className="label">Product Details</span>
         </label>
         <input
           type="textarea"
@@ -259,7 +259,7 @@ const AddProductDetails = ({ setTreatment, appointmentOption }) => {
         <div>
           <label className="label">
             {" "}
-            <span className="label-text">Select Your Image</span>
+            <span className="label">Select Your Image</span>
           </label>
           <input
             type="file"

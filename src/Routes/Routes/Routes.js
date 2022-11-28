@@ -122,7 +122,7 @@ const router = createBrowserRouter([
         element: <Payment></Payment>,
         loader: ({ params }) =>
           fetch(
-            `https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/bookings/${params.id}`
+            `https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/booking/${params.id}`
           ),
       },
       {

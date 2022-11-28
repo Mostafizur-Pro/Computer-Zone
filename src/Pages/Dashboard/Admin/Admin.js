@@ -42,31 +42,22 @@ const Admin = () => {
   console.log("admin user", users);
 
   const handleMakeAdmin = (id) => {
-    // console.log("approved", id);
-
     fetch(
       `https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/users/admin/${id}`,
       {
         method: "PUT",
-        // headers: {
-        //   authorization: `bearer ${localStorage.getItem("accessToken")}`,
-        // },
+        headers: {
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
       }
     )
       .then((res) => res.json())
       .then((data) => {
-        // if (data.modifiedCount > 0) {
-        //   toast.success("Make admin successful.");
-        //   // refetch();
-        // }
         toast.success("Make verify successful.");
       });
   };
-  // console.log("Admin", users);
 
   const handleDelete = (seller) => {
-    // console.log("delete");
-
     fetch(
       `https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/users/${seller._id}`,
       {
@@ -78,10 +69,8 @@ const Admin = () => {
     )
       .then((res) => res.json())
       .then((data) => {
-        // console.log("DELETE DATA", data);
         alert("Are you DELETE this product");
         const remaining = users.filter((user) => user._id !== seller._id);
-        // setUsers(remaining);
 
         refetch();
       });

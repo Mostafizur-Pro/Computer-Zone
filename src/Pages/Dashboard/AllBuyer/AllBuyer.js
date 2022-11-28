@@ -19,7 +19,6 @@ const AllBuyer = () => {
   }, []);
 
   const handleDelete = (product) => {
-    // console.log("delete");
     fetch(
       `https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/users/${product._id}`,
       {
@@ -28,13 +27,10 @@ const AllBuyer = () => {
     )
       .then((res) => res.json())
       .then((data) => {
-        // console.log("DELETE DATA", data);
-        alert("Are you DELETE this product");
         const remaining = buyers.filter(
           (products) => products._id !== product._id
         );
         setBuyers(remaining);
-        // refetch();
       });
   };
   return (

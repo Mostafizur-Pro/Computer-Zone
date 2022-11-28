@@ -31,7 +31,6 @@ const Signup = () => {
     createUser(data.email, data.password)
       .then((result) => {
         const user = result.user;
-        // console.log("user", user);
       })
       .catch((error) => {
         console.log(error);
@@ -50,7 +49,6 @@ const Signup = () => {
       .then((res) => res.json())
       .then((imgData) => {
         if (imgData.success) {
-          // console.log(imgData.data.url);
           const userInfo = {
             name: data.name,
             email: data.email,
@@ -62,7 +60,7 @@ const Signup = () => {
             displayName: data.name,
             photoURL: imgData.data.url,
           };
-          // console.log("useFire", userInfofirebase);
+
           updateUserProfile(userInfofirebase);
 
           saveUser(userInfo);
@@ -73,13 +71,9 @@ const Signup = () => {
     updateUser(userInfofirebase)
       .then(() => {})
       .catch((err) => console.log(err));
-    // navigate("/");
   };
 
   const saveUser = (userInfo) => {
-    // const user = { userInfo };
-    // console.log(userInfo);
-
     fetch(
       "https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/users",
       {
@@ -94,7 +88,6 @@ const Signup = () => {
       .then((data) => {
         // console.log("saveUser", data);
         setCreatedUserEmail(userInfo.email);
-        // setCreatedUserEmail(email);
       });
   };
   return (
@@ -120,7 +113,7 @@ const Signup = () => {
               <div className="form-control w-full max-w-xs">
                 <label className="label">
                   {" "}
-                  <span className="label-text">Full Name</span>
+                  <span className="label">Full Name</span>
                 </label>
                 <input
                   type="text"
@@ -136,7 +129,7 @@ const Signup = () => {
               <div className="form-control w-full max-w-xs">
                 <label className="label">
                   {" "}
-                  <span className="label-text">Email</span>
+                  <span className="label">Email</span>
                 </label>
                 <input
                   type="text"
@@ -152,7 +145,7 @@ const Signup = () => {
               <div className="form-control w-full max-w-xs">
                 <label className="label">
                   {" "}
-                  <span className="label-text">Password</span>
+                  <span className="label">Password</span>
                 </label>
                 <input
                   type="password"
@@ -167,7 +160,7 @@ const Signup = () => {
                 />
                 <label className="label">
                   {" "}
-                  <span className="label-text">Forget Password?</span>
+                  <span className="label">Forget Password?</span>
                 </label>
                 {errors.password && (
                   <p className="text-red-600">{errors.password?.message}</p>
@@ -176,7 +169,7 @@ const Signup = () => {
               <div className="form-control w-full max-w-xs">
                 <label className="label">
                   {" "}
-                  <span className="label-text">Number</span>
+                  <span className="label">Number</span>
                 </label>
                 <input
                   type="text"
@@ -196,8 +189,8 @@ const Signup = () => {
               </div>
               <div className="form-control w-full max-w-xs">
                 <label className="label">
-                  <span className="label-text"></span>
-                  {/* <span className="label-text-alt">Alt label</span> */}
+                  <span className="label"></span>
+                  {/* <span className="label-alt">Alt label</span> */}
                 </label>
 
                 <select
@@ -220,7 +213,7 @@ const Signup = () => {
               <div>
                 <label className="label">
                   {" "}
-                  <span className="label-text">Select Your Image</span>
+                  <span className="label">Select Your Image</span>
                 </label>
                 <input
                   type="file"

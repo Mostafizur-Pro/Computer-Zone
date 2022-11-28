@@ -81,14 +81,15 @@ const MyProducts = () => {
         <h2 className="text-3xl text-center my-10 font-bold">
           All Product List
         </h2>
-        <div className="overflow-x-auto">
-          <table className="table w-full">
+        <div className="overflow-x-auto ">
+          <table className="table-normal w-full">
             <thead>
               <tr>
                 <th>Image</th>
-                <th>Price</th>
+
                 <th>Title</th>
                 <th>Condition</th>
+                <th>Price</th>
                 <th>Available</th>
                 <th>Advertisement</th>
                 <th>Delete</th>
@@ -121,16 +122,7 @@ const MyProducts = () => {
                           Advertisement
                         </button>
                       </td>
-                      {/* <td>
-                    {seller?.role !== "admin" && (
-                      <button
-                        // onClick={() => handleMakeAdmin(user._id)}
-                        className="btn btn-xs btn-primary"
-                      >
-                        Make Admin
-                      </button>
-                    )}
-                  </td> */}
+
                       <td>
                         <button
                           onClick={() => handleDelete(product)}

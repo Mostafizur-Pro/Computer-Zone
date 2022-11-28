@@ -22,27 +22,24 @@ const Order = () => {
   }, []);
   console.log("order", allOrders);
 
-  const handleDelete = (order) => {
-    console.log("delete", order._id);
-
+  const handleDelete = (booking) => {
     fetch(
-      `https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/bookings/${order._id}`,
+      `https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/bookings/${booking._id}`,
       {
         method: "DELETE",
-        // headers: {
-        //   authorization: `bearer ${localStorage.getItem("accessToken")}`,
-        // },
+        headers: {
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
       }
     )
       .then((res) => res.json())
       .then((data) => {
         // console.log("DELETE DATA", data);
-        alert("Are you DELETE this order");
-        const remainingOrders = allOrders.filter(
-          (orders) => orders._id !== order._id
+        alert("Are you DELETE this product");
+        const remaining = allOrders.filter(
+          (bookings) => bookings._id !== booking._id
         );
-        setAllOrders(remainingOrders);
-        // refetch();
+        setAllOrders(remaining);
       });
   };
 
@@ -69,25 +66,25 @@ const Order = () => {
               </tr>
             </thead>
             <tbody>
-              {allOrders.map((order, i) => (
+              {allOrders.map((bookings, i) => (
                 <>
-                  {order?.user?.email === user?.email && (
-                    <tr key={order._id}>
+                  {bookings?.user?.email === user?.email && (
+                    <tr key={bookings._id}>
                       <th>
                         <img
                           className="rounded-xl w-24"
-                          src={order.image_url}
+                          src={bookings.image_url}
                           alt=""
                         ></img>
                       </th>
-                      <td>{order.title}</td>
-                      <td>{order?.sellerEmail}</td>
-                      <td>{order.resalePrice}</td>
+                      <td>{bookings.title}</td>
+                      <td>{bookings.sellerEmail}</td>
+                      <td>{bookings.resalePrice}</td>
 
-                      {order?.paid !== "paid" ? (
+                      {bookings?.paid !== "paid" ? (
                         <>
                           <td>
-                            <Link to={`/dashboard/payment/${order?._id}`}>
+                            <Link to={`/dashboard/payment/${bookings?._id}`}>
                               <button className="btn btn-primary btn-sm">
                                 Pay
                               </button>
@@ -108,7 +105,7 @@ const Order = () => {
                       )}
                       <td>
                         <button
-                          onClick={() => handleDelete(order)}
+                          onClick={() => handleDelete(bookings)}
                           className="btn btn-xs btn-danger"
                         >
                           Delete
@@ -116,76 +113,6 @@ const Order = () => {
                       </td>
                     </tr>
                   )}
-                </>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
-      {/* -------------------------------------- */}
-      {/* -------------------------------------- */}
-      {/* -------------------------------------- */}
-      {/* -------------------------------------- */}
-      {/* -------------------------------------- */}
-      <div>
-        <h2 className="text-3xl text-center my-10 font-bold">
-          All Orders List
-        </h2>
-        <div className="overflow-x-auto">
-          <table className="table  w-full">
-            <thead>
-              <tr>
-                <th>{user?.email}</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Price</th>
-                <th>Buy Now</th>
-                <th>Delete</th>
-              </tr>
-            </thead>
-            <tbody>
-              {allOrders.map((order, i) => (
-                <>
-                  <tr key={order._id}>
-                    <th>
-                      <img
-                        className="rounded-xl w-24"
-                        src={order.image_url}
-                        alt=""
-                      ></img>
-                    </th>
-                    <td>{order.title}</td>
-                    <td>{order?.email}</td>
-                    <td>{order.resalePrice}</td>
-
-                    {order?.paid !== "paid" ? (
-                      <>
-                        <td>
-                          <Link to={`/dashboard/payment/${order?._id}`}>
-                            <button className="btn btn-primary btn-sm">
-                              Pay
-                            </button>
-                          </Link>
-                        </td>
-                      </>
-                    ) : (
-                      <>
-                        <td>
-                          <button disabled className="btn btn-xs btn-secondary">
-                            Paid
-                          </button>
-                        </td>
-                      </>
-                    )}
-                    <td>
-                      <button
-                        onClick={() => handleDelete(order)}
-                        className="btn btn-xs btn-danger"
-                      >
-                        Delete
-                      </button>
-                    </td>
-                  </tr>
                 </>
               ))}
             </tbody>

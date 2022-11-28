@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import { useNavigate } from "react-router-dom";
 
-const CheakoutForm = ({ paymentData }) => {
+const CheakoutForm = ({ order }) => {
   const [cardError, setCardError] = useState("");
   const [success, setSuccess] = useState("");
   const [processing, setProcessing] = useState(false);
@@ -13,20 +13,18 @@ const CheakoutForm = ({ paymentData }) => {
   const stripe = useStripe();
   const elements = useElements();
   const navigate = useNavigate();
-  const { resalePrice, category, _id } = paymentData;
+  const { resalePrice, category, _id } = order;
+  console.log("order", order);
 
   useEffect(() => {
-    fetch(
-      "https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/create-payment-intent",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          // authorization: `bearer ${localStorage.getItem("accessToken")}`,
-        },
-        body: JSON.stringify({ resalePrice }),
-      }
-    )
+    fetch("http://localhost:5000/create-payment-intent", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        // authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
+      body: JSON.stringify({ resalePrice }),
+    })
       .then((res) => res.json())
       .then((data) => setClientSecret(data.clientSecret));
   }, [resalePrice]);
@@ -60,7 +58,7 @@ const CheakoutForm = ({ paymentData }) => {
           card: card,
           billing_details: {
             name: category,
-            email: paymentData.user.email,
+            email: order.user.email,
           },
         },
       });
@@ -73,22 +71,18 @@ const CheakoutForm = ({ paymentData }) => {
       const payment = {
         resalePrice,
         transectionId: paymentIntent.id,
-        email: paymentData.user.email,
+        email: order.user.email,
         productId: _id,
         // categoryItemId: category,
       };
 
-      fetch(
-        "https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/payment",
-        {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-            // authorization: `bearer ${localStorage.getItem("accessToken")}`,
-          },
-          body: JSON.stringify(payment),
-        }
-      )
+      fetch("http://localhost:5000/payments", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(payment),
+      })
         .then((res) => res.json())
         .then((data) => {
           if (data.insertedId) {

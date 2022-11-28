@@ -5,6 +5,7 @@ import Categories from "../Categories/Categories";
 
 import ExploreCategory from "../ExploreCategory/ExploreCategory";
 import Logo from "../Logo/Logo";
+import RecentProduct from "../RecentProduct/RecentProduct";
 import SignIn from "../SignIn/SignIn";
 import Banner from "./../Banner/Banner";
 
@@ -13,10 +14,12 @@ const Home = () => {
   return (
     <div>
       <Banner></Banner>
+
       <Logo></Logo>
       <Advertisement></Advertisement>
       <Categories></Categories>
       <ExploreCategory></ExploreCategory>
+      <RecentProduct></RecentProduct>
       <SignIn></SignIn>
     </div>
   );
