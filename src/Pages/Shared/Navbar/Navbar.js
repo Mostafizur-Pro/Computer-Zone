@@ -310,9 +310,7 @@ const Navbar = () => {
                       </span>
                     </Link>
                   </li>
-                  <li>
-                    <Link to="/dashboard/admin">Dashboard</Link>
-                  </li>
+
                   <li>
                     <Link>Settings</Link>
                   </li>

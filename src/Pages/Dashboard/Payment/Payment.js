@@ -1,34 +1,33 @@
 import React from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigation } from "react-router-dom";
 import CheakoutForm from "./CheakoutForm";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import Loading from "../../Shared/Loading/Loading";
-import useTitle from "../../../hooks/useTitle";
+// import Loading from "../../Shered/Spinner/Loading";
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_KEY);
 
 const Payment = () => {
-  useTitle("Payment");
+  const paymentData = useLoaderData();
+  const navigation = useNavigation();
+  console.log("paymentData", stripePromise);
 
-  // const order = useLoaderData();
-  const { order } = useLoaderData();
-  const { title, resalePrice, category } = order;
+  if (navigation.state === "loading") {
+    return <Loading></Loading>;
+  }
 
-  console.log("order", order);
   return (
     <div>
-      <h3 className="text-3xl mt-10">
-        Payment for <strong>{title}</strong>
-      </h3>
-      <p className="text-xl">
-        {/* Please pay <strong>${resalePrice}</strong> for your order on {category}{" "} */}
-      </p>
-      {/* <div>
+      <h1 className="text-xl font-bold text-green-500 text-center">
+        Payment Details
+      </h1>
+
+      <div>
         <Elements stripe={stripePromise}>
-          <CheakoutForm paymentData={order}></CheakoutForm>
+          <CheakoutForm paymentData={paymentData}></CheakoutForm>
         </Elements>
-      </div> */}
+      </div>
     </div>
   );
 };

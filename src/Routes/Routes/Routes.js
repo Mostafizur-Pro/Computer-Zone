@@ -119,7 +119,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/payment/:id",
-        element: <Payment></Payment>,
+        element: (
+          <PrivateRoute>
+            <Payment></Payment>
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(
             `https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/booking/${params.id}`
