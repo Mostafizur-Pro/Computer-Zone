@@ -63,13 +63,16 @@ const AddProductDetails = ({ setTreatment, appointmentOption }) => {
 
   const saveUser = (appointmentOption) => {
     console.log("saveuser", appointmentOption);
-    fetch("http://localhost:5000/addProduct", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(appointmentOption),
-    })
+    fetch(
+      "https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/addProduct",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(appointmentOption),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);

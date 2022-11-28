@@ -5,7 +5,9 @@ const SellerInfo = (email) => {
 
   useEffect(() => {
     if (email) {
-      fetch(`http://localhost:5000/users/${email}`)
+      fetch(
+        `https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/users/${email}`
+      )
         .then((res) => res.json())
         .then((data) => {
           // console.log(data);

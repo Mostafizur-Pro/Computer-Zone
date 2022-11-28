@@ -1,19 +1,21 @@
 #### Client Site Github Link :
+
 https://github.com/programming-hero-web-course-4/b612-used-products-resale-clients-side-Mostafizur-Pro.git
 
 #### Server Site Github Link :
+
 https://github.com/programming-hero-web-course-4/b612-used-products-resale-server-side-Mostafizur-Pro.git
-
-
 
 #### Live Link :
 
+https://computer-zone-a3f6f.web.app
 
+https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app
 
 #### Admin Email
+
 adminEmail: <mostafiz@ph.com>
 adminPassword: <123456>
-
 
 #### Project Note :
 
@@ -25,9 +27,8 @@ adminPassword: <123456>
 6. Create a 404 Error Route
 7. Create Buyer Order option, Seller Product Post option
 
-
 #### Route
+
 Seller : n@ph.com
 Buyer : s@ph.com
 Admin : mostafiz@ph.com
-

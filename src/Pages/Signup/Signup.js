@@ -80,13 +80,16 @@ const Signup = () => {
     // const user = { userInfo };
     // console.log(userInfo);
 
-    fetch("http://localhost:5000/users", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(userInfo),
-    })
+    fetch(
+      "https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/users",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(userInfo),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         // console.log("saveUser", data);

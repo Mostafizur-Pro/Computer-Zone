@@ -1,30 +1,55 @@
+import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 import useTitle from "../../../hooks/useTitle";
+import Loading from "../../Shared/Loading/Loading";
 
 const Admin = () => {
   useTitle("AdminPanel");
-  const [users, setUsers] = useState([]);
+  // const [users, setUsers] = useState([]);
 
-  useEffect(() => {
-    fetch("http://localhost:5000/users")
-      .then((res) => res.json())
-      .then((data) => {
-        // console.log(data);
-        setUsers(data);
-      });
-  }, []);
+  // useEffect(() => {
+  //   fetch("https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/users")
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       // console.log(data);
+  //       setUsers(data);
+  //     });
+  // }, []);
+  const {
+    data: users = [0],
+    isLoading,
+    refetch,
+  } = useQuery({
+    queryKey: ["users"],
+    queryFn: async () => {
+      const res = await fetch(
+        "https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/users"
+      );
+      const data = await res.json();
+      return data;
+    },
+  });
+
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
+
+  console.log("admin user", users);
 
   const handleMakeAdmin = (id) => {
     // console.log("approved", id);
 
-    fetch(`http://localhost:5000/users/admin/${id}`, {
-      method: "PUT",
-      // headers: {
-      //   authorization: `bearer ${localStorage.getItem("accessToken")}`,
-      // },
-    })
+    fetch(
+      `https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/users/admin/${id}`,
+      {
+        method: "PUT",
+        // headers: {
+        //   authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        // },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         // if (data.modifiedCount > 0) {
@@ -39,19 +64,23 @@ const Admin = () => {
   const handleDelete = (seller) => {
     // console.log("delete");
 
-    fetch(`http://localhost:5000/users/${seller._id}`, {
-      method: "DELETE",
-      headers: {
-        authorization: `bearer ${localStorage.getItem("accessToken")}`,
-      },
-    })
+    fetch(
+      `https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/users/${seller._id}`,
+      {
+        method: "DELETE",
+        headers: {
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         // console.log("DELETE DATA", data);
         alert("Are you DELETE this product");
         const remaining = users.filter((user) => user._id !== seller._id);
-        setUsers(remaining);
-        // refetch();
+        // setUsers(remaining);
+
+        refetch();
       });
   };
 

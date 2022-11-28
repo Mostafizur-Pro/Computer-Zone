@@ -4,7 +4,9 @@ import { Link } from "react-router-dom";
 const RightNavber = ({ category }) => {
   const [categories, setCategories] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/categoryall")
+    fetch(
+      "https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/categoryall"
+    )
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);

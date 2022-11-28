@@ -5,7 +5,9 @@ import Category from "./Category";
 const Categories = () => {
   const [categories, setCategories] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/category")
+    fetch(
+      "https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/category"
+    )
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);

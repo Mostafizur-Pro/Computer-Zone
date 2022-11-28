@@ -18,6 +18,7 @@ const OrderModal = ({ treatment, setTreatment, refetch }) => {
     resalePrice,
     usedYear,
     email,
+    sellerName,
   } = treatment;
 
   const handleBooking = (event) => {
@@ -33,16 +34,20 @@ const OrderModal = ({ treatment, setTreatment, refetch }) => {
       buyerPhone,
       buyerLocation,
       orderDate,
+      product: "order",
     };
 
-    console.log("orderModals", orders);
-    fetch("http://localhost:5000/orders", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(orders),
-    })
+    // console.log("orderModals", orders);
+    fetch(
+      "https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/bookings",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(orders),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         // toast.success("Order Complete");
@@ -51,7 +56,7 @@ const OrderModal = ({ treatment, setTreatment, refetch }) => {
           //  setTreatment(null);
           toast.success("Booking confirmed");
           navigate("/dashboard/order");
-          //  refetch();
+          refetch();
         } else {
           toast.error(data.message);
         }
@@ -70,6 +75,12 @@ const OrderModal = ({ treatment, setTreatment, refetch }) => {
             onSubmit={handleBooking}
             className="grid grid-cols-1 gap-3 mt-10"
           >
+            <label
+              htmlFor="my-modal"
+              className="btn btn-sm btn-circle absolute right-2 top-2"
+            >
+              ✕
+            </label>
             <input
               type="text"
               disabled
@@ -104,12 +115,14 @@ const OrderModal = ({ treatment, setTreatment, refetch }) => {
             <input
               name="phone"
               type="text"
+              required
               placeholder="Phone Number"
               className="input w-full input-bordered"
             />
             <input
               name="location"
               type="text"
+              required
               placeholder="Meet Locaton"
               className="input w-full input-bordered"
             />

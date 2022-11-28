@@ -11,10 +11,12 @@ const Navbar = () => {
   const [users, setUsers] = useState([]);
   const [sellerInfo] = SellerInfo(user?.email);
   // console.log(users.length, "navber");
-  console.log("sellerinfo", sellerInfo);
+  // console.log("sellerinfo", sellerInfo);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/users/${user?.email}`)
+    fetch(
+      `https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/users/${user?.email}`
+    )
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);

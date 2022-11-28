@@ -6,13 +6,23 @@ import { AuthContext } from "../../contexts/AuthProvider";
 import useToken from "../../hooks/useToken";
 import login from "../../assete/LoginSignin/login.png";
 import useTitle from "../../hooks/useTitle";
+import useBuyer from "./../../hooks/useBuyer";
+import useSeller from "../../hooks/useSeller";
+import toast from "react-hot-toast";
 
 const Login = () => {
   useTitle("Login");
+
   const { signIn, createGoogle } = useContext(AuthContext);
   const [loginUserEmail, setLoginUserEmail] = useState("");
+  const [loginUserEmailCheck, setLoginUserEmailCheck] = useState("");
   const [loginError, setLoginError] = useState("");
   const [token] = useToken(loginUserEmail);
+
+  const [isBuyer] = useBuyer(loginUserEmailCheck);
+  const [isSeller] = useSeller(loginUserEmailCheck);
+  const [isAdmin] = useSeller(loginUserEmailCheck);
+  // const [isUser] = useSeller(loginUserEmailCheck);
 
   const {
     register,
@@ -27,42 +37,59 @@ const Login = () => {
   if (token) {
     navigate(from, { replace: true });
   }
-
   const handleLogin = (data) => {
+    setLoginUserEmailCheck(data.email);
+
+    console.log("isby", isBuyer, "se", isSeller, isAdmin);
     setLoginError("");
-    signIn(data.email, data.password)
-      .then((result) => {
-        const user = result.user;
-        console.log(user.email);
-        setLoginUserEmail(user.email);
-        // navigate(from, { replace: true });
-      })
-      .catch((error) => {
-        // console.log(error.message);
-        setLoginError(error.message);
-      });
+
+    if (isBuyer === true || isSeller === true || isAdmin === true) {
+      signIn(data.email, data.password)
+        .then((result) => {
+          const user = result.user;
+          setLoginUserEmail(user.email);
+        })
+        .catch((error) => {
+          setLoginError(error.message);
+        });
+    } else {
+      toast.error("This email and password not match in server");
+    }
   };
   const handleGoogleSignIn = (event) => {
     event.preventDefault();
     createGoogle()
       .then((result) => {
         const user = result.user;
-        const userInfo = { ...user, userType: "buyer" };
-        // console.log(userInfo);
-        fetch("http://localhost:5000/users", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(userInfo),
-        })
+        setLoginUserEmail(user.email);
+        const userInfo = {
+          name: user.displayName,
+          email: user.email,
+          number: "",
+          image: user.photoURL,
+          userType: "buyer",
+        };
+        // console.log("user", user);
+
+        fetch(
+          "https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/users",
+          {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(userInfo),
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             // console.log("saveUser", data);
             // setCreatedUserEmail(email);
+            // setLoginUserEmail(data.email);
           });
-        // navigate(from, { replace: true });
+        navigate(from, { replace: true });
       })
+
       .catch((error) => console.error(error));
   };
   return (

@@ -67,13 +67,16 @@ const AddProduct = () => {
 
   const saveUser = (addProduct) => {
     console.log("saveuser", addProduct);
-    fetch("http://localhost:5000/addProduct", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(addProduct),
-    })
+    fetch(
+      "https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/addProduct",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(addProduct),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);
@@ -89,7 +92,7 @@ const AddProduct = () => {
   // const saveUser = (userInfo) => {
   //   // const user = { userInfo };
 
-  //   fetch("http://localhost:5000/addProduct", {
+  //   fetch("https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/addProduct", {
   //     method: "POST",
   //     headers: {
   //       "content-type": "application/json",

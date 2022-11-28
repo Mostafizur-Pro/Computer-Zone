@@ -24,6 +24,7 @@ import Payment from "../../Pages/Dashboard/Payment/Payment";
 import MyBuyers from "../../Pages/Dashboard/MyBuyers/MyBuyers";
 import ReportAdmin from "../../Pages/Dashboard/ReportAdmin/ReportAdmin";
 import PageError from "../../Pages/Shared/PageError/PageError";
+import MyWishList from "../../Pages/Dashboard/MyWishList/MyWishList";
 
 const router = createBrowserRouter([
   {
@@ -62,25 +63,33 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/productAll/${params.id}`),
+          fetch(
+            `https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/productAll/${params.id}`
+          ),
       },
       {
         path: "/categorylist/:id",
         element: <CategoryList></CategoryList>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/categoryall?category=${params.id}`),
+          fetch(
+            `https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/categoryall?category=${params.id}`
+          ),
       },
       {
         path: "/categorydetails/:category",
         element: <CategoryDetails></CategoryDetails>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/products?category=${params.category}`),
+          fetch(
+            `https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/products?category=${params.category}`
+          ),
       },
       {
         path: "/products/:id",
         element: <Products></Products>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/productcategory/${params.id}`),
+          fetch(
+            `https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/productcategory/${params.id}`
+          ),
       },
     ],
   },
@@ -101,10 +110,20 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "/dashboard/mywishlist",
+        element: (
+          <BuyerRoute>
+            <MyWishList></MyWishList>
+          </BuyerRoute>
+        ),
+      },
+      {
         path: "/dashboard/payment/:id",
         element: <Payment></Payment>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/orders/${params.id}`),
+          fetch(
+            `https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/bookings/${params.id}`
+          ),
       },
       {
         path: "/dashboard/addproducts",

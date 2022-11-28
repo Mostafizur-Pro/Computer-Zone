@@ -12,7 +12,7 @@ const CategoryDetails = () => {
   const categories = useLoaderData();
   // const [categories, setCategories] = useState([]);
   // useEffect(() => {
-  //   fetch(`http://localhost:5000/productcategory/${param.id}`)
+  //   fetch(`https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/productcategory/${param.id}`)
   //     .then((res) => res.json())
   //     .then((data) => {
   //       // console.log(data);

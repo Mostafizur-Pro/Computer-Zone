@@ -10,7 +10,9 @@ const Profile = () => {
   const { user } = useContext(AuthContext);
   const [profilesData, setProfilesData] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/users/${user?.email}`)
+    fetch(
+      `https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/users/${user?.email}`
+    )
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);

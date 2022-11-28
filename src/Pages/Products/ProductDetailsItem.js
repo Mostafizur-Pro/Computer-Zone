@@ -22,6 +22,30 @@ const ProductDetailsItem = ({ appointmentOption, setTreatment }) => {
     number,
   } = appointmentOption;
   // console.log("userInfo", appointmentOption);
+  const orderNow = (
+    <>
+      {" "}
+      <label
+        htmlFor="my-modal"
+        onClick={() => setTreatment(appointmentOption)}
+        className="btn btn-success"
+      >
+        Order Now
+      </label>
+    </>
+  );
+  const wishList = (
+    <div>
+      <label
+        htmlFor="my-modal1"
+        onClick={() => setTreatment(appointmentOption)}
+        className="btn btn-primary"
+      >
+        Add Wish List
+      </label>
+    </div>
+  );
+
   return (
     <div>
       <div className="my-10">
@@ -37,51 +61,14 @@ const ProductDetailsItem = ({ appointmentOption, setTreatment }) => {
             <h2 className="card-title">{title}</h2>
             <p>{product_details}</p>
             {isBuyer && (
-              <div className="card-actions justify-end">
-                <label
-                  htmlFor="my-modal"
-                  onClick={() => setTreatment(appointmentOption)}
-                  className="btn btn-success"
-                >
-                  Order Now
-                </label>
-                {/* <button
-                onClick={() => handleOrder(productDetails)}
-                className="btn btn-primary"
-              >
-                Order Now
-              </button> */}
-              </div>
+              <>
+                <div className="card-actions justify-end">{orderNow}</div>
+                <div className="card-actions justify-end">{wishList}</div>
+              </>
             )}
           </div>
         </div>
-        {/* ------------------------------------------------- */}
-        <div>
-          {/* The button to open modal */}
-          {/* <label htmlFor="my-modal" className="btn">
-          open modal
-        </label> */}
 
-          {/* Put this part before </body> tag */}
-          {/* <input type="checkbox" id="my-modal" className="modal-toggle" />
-        <div className="modal">
-          <div className="modal-box">
-            <h3 className="font-bold text-lg">
-              Congratulations random Internet user!
-            </h3>
-            <p className="py-4">
-              You've been selected for a chance to get one year of subscription
-              to use Wikipedia for free!
-            </p>
-            <div className="modal-action">
-              <label htmlFor="my-modal" className="btn">
-                Yay!
-              </label>
-            </div>
-          </div>
-        </div> */}
-        </div>
-        {/* ------------------------------------------------- */}
         <div className="overflow-x-auto my-10">
           <table className="table table-zebra w-4/6 mb-5 mx-auto">
             <thead>
@@ -112,7 +99,7 @@ const ProductDetailsItem = ({ appointmentOption, setTreatment }) => {
               <tr>
                 <th>Used</th>
                 <td>
-                  : {usedYear}{" "}
+                  : {usedYear} {usedYear >= 1 ? <>years</> : <>year</>}
                   <span className="ml-5 text-gray-500">
                     condition : {condition}
                   </span>
@@ -146,13 +133,9 @@ const ProductDetailsItem = ({ appointmentOption, setTreatment }) => {
             </tbody>
           </table>
           {isBuyer && (
-            <div className="card-actions justify-center">
-              <button
-                // onClick={() => handleOrder(productDetails)}
-                className="btn btn-primary"
-              >
-                Order Now
-              </button>
+            <div className="flex justify-center">
+              <div className="card-actions mr-5 justify-center">{orderNow}</div>
+              <div className="card-actions ml-5 justify-center">{wishList}</div>
             </div>
           )}
         </div>

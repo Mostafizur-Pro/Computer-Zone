@@ -1,6 +1,5 @@
-import { useQuery } from "@tanstack/react-query";
 import React, { useContext, useEffect, useState } from "react";
-import toast from "react-hot-toast";
+
 import { AuthContext } from "../../../contexts/AuthProvider";
 import Advertisement from "./../../Home/Advertisement/Advertisement";
 import useTitle from "./../../../hooks/useTitle";
@@ -12,7 +11,9 @@ const MyProducts = () => {
   const [allProducts, setAllProducts] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/productAll")
+    fetch(
+      "https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/productAll"
+    )
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);
@@ -35,12 +36,15 @@ const MyProducts = () => {
 
   const handleDelete = (product) => {
     console.log("delete");
-    fetch(`http://localhost:5000/productAll/${product._id}`, {
-      method: "DELETE",
-      headers: {
-        authorization: `bearer ${localStorage.getItem("accessToken")}`,
-      },
-    })
+    fetch(
+      `https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/productAll/${product._id}`,
+      {
+        method: "DELETE",
+        headers: {
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         // console.log("DELETE DATA", data);
@@ -54,13 +58,16 @@ const MyProducts = () => {
   };
 
   const handleAdvertisement = (product) => {
-    fetch("http://localhost:5000/advertisement", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(product),
-    })
+    fetch(
+      "https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/advertisement",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(product),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

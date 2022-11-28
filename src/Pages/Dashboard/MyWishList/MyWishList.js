@@ -1,31 +1,33 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider";
 import useTitle from "../../../hooks/useTitle";
 
-const Order = () => {
-  useTitle("Order");
+const MyWishList = () => {
+  useTitle("Wish List");
+  const navigate = useNavigate();
   const { user } = useContext(AuthContext);
   console.log(user);
 
-  const [allOrders, setAllOrders] = useState([]);
+  const [allWishListData, setAllWishListData] = useState([]);
 
   useEffect(() => {
     fetch(
-      "https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/bookings"
+      "https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/wishlist"
     )
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);
-        setAllOrders(data);
+        setAllWishListData(data);
       });
   }, []);
-  console.log("order", allOrders);
+  console.log("order", allWishListData);
 
   const handleDelete = (order) => {
     console.log("delete", order._id);
     fetch(
-      `https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/bookings/${order._id}`,
+      `https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/wishlist/${order._id}`,
       {
         method: "DELETE",
         // headers: {
@@ -37,24 +39,59 @@ const Order = () => {
       .then((data) => {
         // console.log("DELETE DATA", data);
         alert("Are you DELETE this order");
-        const remainingOrders = allOrders.filter(
+        const remainingOrders = allWishListData.filter(
           (orders) => orders._id !== order._id
         );
-        setAllOrders(remainingOrders);
+        setAllWishListData(remainingOrders);
         // refetch();
       });
   };
 
-  const handlePayment = (order) => {
-    console.log("Payment Order", order);
+  const handleBooking = (wishlist) => {
+    fetch(
+      `https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/wishlist/buyer/${wishlist._id}`,
+      {
+        method: "PUT",
+        // headers: {
+        //   authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        // },
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        toast.success("Make verify successful.");
+      });
+
+    // console.log("orderModals", orders);
+    fetch(
+      "https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/bookings",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(wishlist),
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        // toast.success("Order Complete");
+        console.log("order", data);
+        if (data.acknowledged) {
+          //  setTreatment(null);
+          toast.success("Booking confirmed");
+          navigate("/dashboard/order");
+        } else {
+          toast.error(data.message);
+        }
+      });
+    // console.log("useremail", order);
   };
   return (
     <div>
       {" "}
       <div>
-        <h2 className="text-3xl text-center my-10 font-bold">
-          All Orders List
-        </h2>
+        <h2 className="text-3xl text-center my-10 font-bold">All Wish List</h2>
         <div className="overflow-x-auto">
           <table className="table  w-full">
             <thead>
@@ -68,29 +105,30 @@ const Order = () => {
               </tr>
             </thead>
             <tbody>
-              {allOrders.map((order, i) => (
+              {allWishListData.map((wishlist, i) => (
                 <>
-                  {order?.user?.email === user?.email && (
-                    <tr key={order._id}>
+                  {wishlist?.user?.email === user?.email && (
+                    <tr key={wishlist._id}>
                       <th>
                         <img
                           className="rounded-xl w-24"
-                          src={order.image_url}
+                          src={wishlist.image_url}
                           alt=""
                         ></img>
                       </th>
-                      <td>{order.title}</td>
-                      <td>{order?.sellerEmail}</td>
-                      <td>{order.resalePrice}</td>
+                      <td>{wishlist.title}</td>
+                      <td>{wishlist?.sellerEmail}</td>
+                      <td>{wishlist.resalePrice}</td>
 
-                      {order?.paid !== "paid" ? (
+                      {wishlist?.product === "wishlist" ? (
                         <>
                           <td>
-                            <Link to={`/dashboard/payment/${order?._id}`}>
-                              <button className="btn btn-primary btn-sm">
-                                Pay
-                              </button>
-                            </Link>
+                            <button
+                              onClick={() => handleBooking(wishlist)}
+                              className="btn btn-xs btn-success"
+                            >
+                              Order Now
+                            </button>
                           </td>
                         </>
                       ) : (
@@ -100,14 +138,14 @@ const Order = () => {
                               disabled
                               className="btn btn-xs btn-secondary"
                             >
-                              Paid
+                              All ready Order
                             </button>
                           </td>
                         </>
                       )}
                       <td>
                         <button
-                          onClick={() => handleDelete(order)}
+                          onClick={() => handleDelete(wishlist)}
                           className="btn btn-xs btn-danger"
                         >
                           Delete
@@ -143,7 +181,7 @@ const Order = () => {
               </tr>
             </thead>
             <tbody>
-              {allOrders.map((order, i) => (
+              {allWishListData.map((order, i) => (
                 <>
                   <tr key={order._id}>
                     <th>
@@ -195,4 +233,4 @@ const Order = () => {
   );
 };
 
-export default Order;
+export default MyWishList;

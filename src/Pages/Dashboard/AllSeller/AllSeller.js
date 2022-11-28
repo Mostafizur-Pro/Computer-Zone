@@ -1,26 +1,57 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import useTitle from "../../../hooks/useTitle";
 
 const AllSeller = () => {
   useTitle("AllSeller");
   const [sellers, setSellers] = useState([]);
+
   useEffect(() => {
-    fetch("http://localhost:5000/users")
-      .then((res) => res.json())
+    axios
+      .get(
+        "https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/users"
+      )
       .then((data) => {
-        // console.log(data);
-        setSellers(data);
+        const users = data.data;
+
+        setSellers(users);
       });
   }, []);
 
+  const handleMakeAdmin = (id) => {
+    // console.log("approved", id);
+
+    fetch(
+      `https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/users/admin/${id}`,
+      {
+        method: "PUT",
+        // headers: {
+        //   authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        // },
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        // if (data.modifiedCount > 0) {
+        //   toast.success("Make admin successful.");
+        //   // refetch();
+        // }
+        toast.success("Make verify successful.");
+      });
+  };
+
   const handleDelete = (product) => {
     console.log("delete");
-    fetch(`http://localhost:5000/users/${product._id}`, {
-      method: "DELETE",
-      // headers: {
-      //   "content-type": "application/json",
-      // },
-    })
+    fetch(
+      `https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/users/${product._id}`,
+      {
+        method: "DELETE",
+        // headers: {
+        //   "content-type": "application/json",
+        // },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         // console.log("DELETE DATA", data);
@@ -48,6 +79,7 @@ const AllSeller = () => {
                 <th>Name</th>
                 <th>Email</th>
                 <th>User Type</th>
+                <th>Approved</th>
                 <th>Delete</th>
               </tr>
             </thead>
@@ -63,17 +95,33 @@ const AllSeller = () => {
                       </th>
                       <td>{seller.name}</td>
                       <td>{seller.email}</td>
+                      <td>
+                        {seller?.userType === "Seller" &&
+                          seller?.role !== "verify" && (
+                            <>
+                              <td>
+                                <button
+                                  onClick={() => handleMakeAdmin(seller?._id)}
+                                  className="btn btn-xs btn-secondary"
+                                >
+                                  Click
+                                </button>
+                              </td>
+                            </>
+                          )}
+
+                        {seller?.role === "verify" && (
+                          <>
+                            <td>
+                              <button className="btn btn-xs btn-success">
+                                Verify
+                              </button>
+                            </td>
+                          </>
+                        )}
+                      </td>
                       <td>{seller.userType}</td>
-                      {/* <td>
-                    {seller?.role !== "admin" && (
-                      <button
-                        // onClick={() => handleMakeAdmin(user._id)}
-                        className="btn btn-xs btn-primary"
-                      >
-                        Make Admin
-                      </button>
-                    )}
-                  </td> */}
+
                       <td>
                         <button
                           onClick={() => handleDelete(seller)}
