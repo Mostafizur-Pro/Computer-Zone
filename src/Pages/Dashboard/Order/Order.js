@@ -11,9 +11,13 @@ const Order = () => {
   const [allOrders, setAllOrders] = useState([]);
 
   useEffect(() => {
+<<<<<<< HEAD
     fetch(
       "https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/bookings"
     )
+=======
+    fetch("http://localhost:5000/bookings")
+>>>>>>> b2cbf455e3c676f2454242a28da800495ed71b3d
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);
@@ -24,6 +28,7 @@ const Order = () => {
 
   const handleDelete = (order) => {
     console.log("delete", order._id);
+<<<<<<< HEAD
     fetch(
       `https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/bookings/${order._id}`,
       {
@@ -33,6 +38,14 @@ const Order = () => {
         // },
       }
     )
+=======
+    fetch(`http://localhost:5000/bookings/${order._id}`, {
+      method: "DELETE",
+      // headers: {
+      //   authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      // },
+    })
+>>>>>>> b2cbf455e3c676f2454242a28da800495ed71b3d
       .then((res) => res.json())
       .then((data) => {
         // console.log("DELETE DATA", data);

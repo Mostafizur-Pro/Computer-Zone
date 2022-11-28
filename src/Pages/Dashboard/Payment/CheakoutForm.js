@@ -78,6 +78,7 @@ const CheakoutForm = ({ paymentData }) => {
         // categoryItemId: category,
       };
 
+<<<<<<< HEAD
       fetch(
         "https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/payment",
         {
@@ -89,6 +90,16 @@ const CheakoutForm = ({ paymentData }) => {
           body: JSON.stringify(payment),
         }
       )
+=======
+      fetch("http://localhost:5000/payment", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          // authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+        body: JSON.stringify(payment),
+      })
+>>>>>>> b2cbf455e3c676f2454242a28da800495ed71b3d
         .then((res) => res.json())
         .then((data) => {
           if (data.insertedId) {

@@ -10,7 +10,11 @@ const Admin = () => {
   // const [users, setUsers] = useState([]);
 
   // useEffect(() => {
+<<<<<<< HEAD
   //   fetch("https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/users")
+=======
+  //   fetch("http://localhost:5000/users")
+>>>>>>> b2cbf455e3c676f2454242a28da800495ed71b3d
   //     .then((res) => res.json())
   //     .then((data) => {
   //       // console.log(data);
@@ -24,9 +28,13 @@ const Admin = () => {
   } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
+<<<<<<< HEAD
       const res = await fetch(
         "https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/users"
       );
+=======
+      const res = await fetch("http://localhost:5000/users");
+>>>>>>> b2cbf455e3c676f2454242a28da800495ed71b3d
       const data = await res.json();
       return data;
     },

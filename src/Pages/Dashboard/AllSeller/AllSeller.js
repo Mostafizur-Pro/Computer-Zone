@@ -8,6 +8,7 @@ const AllSeller = () => {
   const [sellers, setSellers] = useState([]);
 
   useEffect(() => {
+<<<<<<< HEAD
     axios
       .get(
         "https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/users"
@@ -16,8 +17,33 @@ const AllSeller = () => {
         const users = data.data;
 
         setSellers(users);
-      });
+=======
+    axios.get("http://localhost:5000/users").then((data) => {
+      const users = data.data;
+
+      setSellers(users);
+    });
   }, []);
+
+  const handleMakeAdmin = (id) => {
+    // console.log("approved", id);
+
+    fetch(`http://localhost:5000/users/admin/${id}`, {
+      method: "PUT",
+      // headers: {
+      //   authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      // },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // if (data.modifiedCount > 0) {
+        //   toast.success("Make admin successful.");
+        //   // refetch();
+        // }
+        toast.success("Make verify successful.");
+>>>>>>> b2cbf455e3c676f2454242a28da800495ed71b3d
+      });
+  };
 
   const handleMakeAdmin = (id) => {
     // console.log("approved", id);

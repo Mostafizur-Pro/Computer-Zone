@@ -121,9 +121,13 @@ const router = createBrowserRouter([
         path: "/dashboard/payment/:id",
         element: <Payment></Payment>,
         loader: ({ params }) =>
+<<<<<<< HEAD
           fetch(
             `https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/bookings/${params.id}`
           ),
+=======
+          fetch(`http://localhost:5000/bookings/${params.id}`),
+>>>>>>> b2cbf455e3c676f2454242a28da800495ed71b3d
       },
       {
         path: "/dashboard/addproducts",

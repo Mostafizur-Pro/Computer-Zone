@@ -7,8 +7,11 @@ import useToken from "../../hooks/useToken";
 import login from "../../assete/LoginSignin/login.png";
 import useTitle from "../../hooks/useTitle";
 import useBuyer from "./../../hooks/useBuyer";
+<<<<<<< HEAD
 import useSeller from "../../hooks/useSeller";
 import toast from "react-hot-toast";
+=======
+>>>>>>> b2cbf455e3c676f2454242a28da800495ed71b3d
 
 const Login = () => {
   useTitle("Login");
@@ -42,6 +45,7 @@ const Login = () => {
 
     console.log("isby", isBuyer, "se", isSeller, isAdmin);
     setLoginError("");
+<<<<<<< HEAD
 
     if (isBuyer === true || isSeller === true || isAdmin === true) {
       signIn(data.email, data.password)
@@ -55,6 +59,19 @@ const Login = () => {
     } else {
       toast.error("This email and password not match in server");
     }
+=======
+    signIn(data.email, data.password)
+      .then((result) => {
+        const user = result.user;
+        // console.log(user.email);
+        setLoginUserEmail(user.email);
+        // navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        // console.log(error.message);
+        setLoginError(error.message);
+      });
+>>>>>>> b2cbf455e3c676f2454242a28da800495ed71b3d
   };
   const handleGoogleSignIn = (event) => {
     event.preventDefault();
@@ -71,6 +88,7 @@ const Login = () => {
         };
         // console.log("user", user);
 
+<<<<<<< HEAD
         fetch(
           "https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/users",
           {
@@ -81,6 +99,15 @@ const Login = () => {
             body: JSON.stringify(userInfo),
           }
         )
+=======
+        fetch("http://localhost:5000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(userInfo),
+        })
+>>>>>>> b2cbf455e3c676f2454242a28da800495ed71b3d
           .then((res) => res.json())
           .then((data) => {
             // console.log("saveUser", data);

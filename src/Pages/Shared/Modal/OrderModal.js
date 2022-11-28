@@ -38,6 +38,7 @@ const OrderModal = ({ treatment, setTreatment, refetch }) => {
     };
 
     // console.log("orderModals", orders);
+<<<<<<< HEAD
     fetch(
       "https://b612-used-products-resale-server-side-mostafizur-pro.vercel.app/bookings",
       {
@@ -48,6 +49,15 @@ const OrderModal = ({ treatment, setTreatment, refetch }) => {
         body: JSON.stringify(orders),
       }
     )
+=======
+    fetch("http://localhost:5000/bookings", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(orders),
+    })
+>>>>>>> b2cbf455e3c676f2454242a28da800495ed71b3d
       .then((res) => res.json())
       .then((data) => {
         // toast.success("Order Complete");
