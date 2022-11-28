@@ -7,6 +7,7 @@ import { AuthContext } from "../../contexts/AuthProvider";
 import useTitle from "../../hooks/useTitle";
 import Loading from "../Shared/Loading/Loading";
 import OrderModal from "../Shared/Modal/OrderModal";
+import WishListModal from "../Shared/Modal/WishListModal";
 import ProductDetailsItem from "./ProductDetailsItem";
 
 const ProductDetails = () => {
@@ -53,6 +54,15 @@ const ProductDetails = () => {
             setTreatment={setTreatment}
             refetch={refetch}
           ></OrderModal>
+        )}
+      </div>
+      <div>
+        {treatment && (
+          <WishListModal
+            treatment={treatment}
+            setTreatment={setTreatment}
+            refetch={refetch}
+          ></WishListModal>
         )}
       </div>
     </section>

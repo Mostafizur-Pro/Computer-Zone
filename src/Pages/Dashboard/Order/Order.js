@@ -11,7 +11,7 @@ const Order = () => {
   const [allOrders, setAllOrders] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/orders")
+    fetch("http://localhost:5000/bookings")
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);
@@ -22,7 +22,7 @@ const Order = () => {
 
   const handleDelete = (order) => {
     console.log("delete", order._id);
-    fetch(`http://localhost:5000/orders/${order._id}`, {
+    fetch(`http://localhost:5000/bookings/${order._id}`, {
       method: "DELETE",
       // headers: {
       //   authorization: `bearer ${localStorage.getItem("accessToken")}`,
@@ -81,7 +81,7 @@ const Order = () => {
                       {order?.paid !== "paid" ? (
                         <>
                           <td>
-                            <Link to={`/dashboard/payment/${order._id}`}>
+                            <Link to={`/dashboard/payment/${order?._id}`}>
                               <button className="btn btn-primary btn-sm">
                                 Pay
                               </button>

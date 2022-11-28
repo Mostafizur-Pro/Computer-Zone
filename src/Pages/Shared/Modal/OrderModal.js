@@ -34,10 +34,11 @@ const OrderModal = ({ treatment, setTreatment, refetch }) => {
       buyerPhone,
       buyerLocation,
       orderDate,
+      product: "order",
     };
 
-    console.log("orderModals", orders);
-    fetch("http://localhost:5000/orders", {
+    // console.log("orderModals", orders);
+    fetch("http://localhost:5000/bookings", {
       method: "POST",
       headers: {
         "content-type": "application/json",

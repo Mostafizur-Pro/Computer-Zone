@@ -36,7 +36,13 @@ const ProductDetailsItem = ({ appointmentOption, setTreatment }) => {
   );
   const wishList = (
     <div>
-      <button className="btn btn-secondary">Add Wish list</button>
+      <label
+        htmlFor="my-modal1"
+        onClick={() => setTreatment(appointmentOption)}
+        className="btn btn-primary"
+      >
+        Add Wish List
+      </label>
     </div>
   );
 
