@@ -1,19 +1,14 @@
 #### Client Site Github Link :
 
-https://github.com/programming-hero-web-course-4/b612-used-products-resale-clients-side-Mostafizur-Pro.git
+https://github.com/Mostafizur-Pro/Computer-Zone.git
 
 #### Server Site Github Link :
 
-https://github.com/programming-hero-web-course-4/b612-used-products-resale-server-side-Mostafizur-Pro.git
+https://github.com/Mostafizur-Pro/Computer-Zone-Server.git
 
 #### Live Link :
 
 https://computer-zone-a3f6f.web.app
-
-#### Admin Email
-
-adminEmail: <mostafiz@ph.com>
-adminPassword: <123456>
 
 #### Project Note :
 
